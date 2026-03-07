@@ -1,0 +1,99 @@
+# Project Context
+
+Project Name: <Your Project Name>
+Description: <Brief description of the app, features, categories>
+Features:
+- User authentication (signup/login/logout)
+- Models and relationships
+- CRUD views and templates
+- API endpoints (optional)
+- Admin registration
+- Tests
+
+Constraints:
+- Use Django 4.x or 5.x
+- Use class-based views
+- Follow DRY principles (BaseModel if needed)
+- Use Django REST Framework for APIs
+- Use template inheritance
+- Include unit tests
+
+Notes:
+- Provide file paths with code in each response
+- Include comments explaining code
+
+
+
+
+
+method 2
+
+
+You are an expert Django full-stack developer.
+
+Project Context:
+<Project Name>: <Your Project Name>
+Description: <Brief description of the app, features, categories>
+Features:
+- User authentication (signup/login/logout)
+- Models and relationships
+- CRUD views and templates
+- API endpoints (optional)
+- Admin registration
+- Tests
+
+Constraints:
+- Use Django 4.x or 5.x
+- Use class-based views
+- Follow DRY principles (create a BaseModel if needed)
+- Use Django REST Framework for APIs
+- Use template inheritance
+- Include unit tests
+- Include comments in code explaining fields, methods, and logic
+
+Task:
+Generate a complete Django application according to the above context with the following structure:
+
+1. **BaseModel / Utilities**:
+   - Abstract BaseModel with `created_at`, `updated_at`, `is_active`
+   - Methods: `soft_delete()`, `restore()`
+   - Meta: `abstract=True`, default ordering
+
+2. **Models**:
+   - Create all models with fields, relationships, `__str__()`, `get_absolute_url()`
+   - Use BaseModel inheritance
+
+3. **Admin Registration**:
+   - Register all models with `list_display`, `search_fields`, `list_filter`, `prepopulated_fields` as needed
+
+4. **Views**:
+   - Class-based views: ListView, DetailView, CreateView, UpdateView, DeleteView
+   - Proper context_object_names
+   - Pagination for list views
+   - Include API ViewSets if DRF endpoints are needed
+
+5. **URLs**:
+   - Define urls.py for all views
+   - Use path converters (`<slug:slug>` / `<int:id>`)
+   - Use app_name for namespacing
+
+6. **Templates**:
+   - base.html with blocks
+   - list.html: loop over objects
+   - detail.html: show object fields
+   - form.html: for create/update views
+   - Use template inheritance and Django template tags
+
+7. **Serializers / API**:
+   - DRF ModelSerializer for all models
+   - Create viewsets if APIs are required
+   - Include router configuration
+
+8. **Tests**:
+   - Unit tests for models (methods, __str__)
+   - Unit tests for views and APIs (CRUD operations)
+   - Include comments explaining each test
+
+Output Requirements:
+- Provide all files separately with file paths as headings, e.g.:
+

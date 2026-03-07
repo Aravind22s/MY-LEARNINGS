@@ -1,0 +1,19 @@
+Excited to share my latest mini-project: a Django Blog Application! 🚀
+
+This project demonstrates CRUD operations for articles and covers key Django concepts like:
+
+Models and ORM
+
+Views and URL routing
+
+Templates and static files
+
+Forms and validation
+
+Optional advanced structures like services, signals, and serializers
+
+I built this project to strengthen my full-stack Django skills and explore best practices for project structure. Whether you're starting with Django or looking to brush up your skills, this project is a great reference.
+
+Check out the code on GitHub: [GitHub Repo Link] 🔗
+
+#Django #Python #WebDevelopment #FullStack #CRUD #MiniProject #LearningByDoing

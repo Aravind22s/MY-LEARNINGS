@@ -1,0 +1,1 @@
+python3 /home/aravind/etl_script.py 
