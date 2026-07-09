@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Transform Examples</title>
+
+<style>
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f5f5f5;
+    text-align:center;
+}
+
+h1{
+    color:#333;
+}
+
+.container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
+    margin:40px;
+}
+
+.box{
+    width:120px;
+    height:120px;
+    background:royalblue;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:1s;
+    cursor:pointer;
+}
+
+/* ------------------------
+   translate()
+-------------------------*/
+
+.translate:hover{
+    transform:translate(80px,30px);
+}
+
+/* ------------------------
+   translateX()
+-------------------------*/
+
+.translateX:hover{
+    transform:translateX(100px);
+}
+
+/* ------------------------
+   translateY()
+-------------------------*/
+
+.translateY:hover{
+    transform:translateY(60px);
+}
+
+/* ------------------------
+   scale()
+-------------------------*/
+
+.scale:hover{
+    transform:scale(1.5);
+}
+
+/* ------------------------
+   scaleX()
+-------------------------*/
+
+.scaleX:hover{
+    transform:scaleX(2);
+}
+
+/* ------------------------
+   scaleY()
+-------------------------*/
+
+.scaleY:hover{
+    transform:scaleY(1.8);
+}
+
+/* ------------------------
+   rotate()
+-------------------------*/
+
+.rotate:hover{
+    transform:rotate(45deg);
+}
+
+/* ------------------------
+   rotateX()
+-------------------------*/
+
+.rotateX:hover{
+    transform:rotateX(180deg);
+}
+
+/* ------------------------
+   rotateY()
+-------------------------*/
+
+.rotateY:hover{
+    transform:rotateY(180deg);
+}
+
+/* ------------------------
+   rotateZ()
+-------------------------*/
+
+.rotateZ:hover{
+    transform:rotateZ(180deg);
+}
+
+/* ------------------------
+   skew()
+-------------------------*/
+
+.skew:hover{
+    transform:skew(20deg,10deg);
+}
+
+/* ------------------------
+   skewX()
+-------------------------*/
+
+.skewX:hover{
+    transform:skewX(30deg);
+}
+
+/* ------------------------
+   skewY()
+-------------------------*/
+
+.skewY:hover{
+    transform:skewY(30deg);
+}
+
+/* ------------------------
+   Multiple Transform
+-------------------------*/
+
+.multiple:hover{
+
+    transform:
+    translateX(80px)
+    rotate(45deg)
+    scale(1.3);
+
+}
+
+/* ------------------------
+   Matrix
+-------------------------*/
+
+.matrix:hover{
+
+    transform:matrix(
+        1,
+        0.3,
+        0.3,
+        1,
+        40,
+        20
+    );
+
+}
+
+/* ------------------------
+   Transform Origin
+-------------------------*/
+
+.origin{
+
+    transform-origin:left top;
+
+}
+
+.origin:hover{
+
+    transform:rotate(90deg);
+
+}
+
+/* ------------------------
+   Will Change
+-------------------------*/
+
+.will{
+
+    will-change:transform;
+
+}
+
+.will:hover{
+
+    transform:scale(1.5) rotate(30deg);
+
+}
+
+/* ------------------------
+   Perspective
+-------------------------*/
+
+.perspective{
+
+    perspective:800px;
+
+}
+
+.card{
+
+    width:120px;
+    height:120px;
+    margin:auto;
+    background:tomato;
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:1s;
+
+}
+
+.perspective:hover .card{
+
+    transform:rotateY(180deg);
+
+}
+
+/* ------------------------
+   Preserve 3D
+-------------------------*/
+
+.parent{
+
+    perspective:800px;
+
+}
+
+.cube{
+
+    width:120px;
+    height:120px;
+
+    margin:auto;
+
+    background:green;
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transform-style:preserve-3d;
+
+    transition:1s;
+
+}
+
+.parent:hover .cube{
+
+    transform:rotateY(180deg);
+
+}
+
+/* ------------------------
+   Backface Visibility
+-------------------------*/
+
+.flip{
+
+    perspective:800px;
+
+}
+
+.flip-card{
+
+    width:120px;
+    height:120px;
+
+    position:relative;
+
+    transform-style:preserve-3d;
+
+    transition:1s;
+
+}
+
+.front,
+.back{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    backface-visibility:hidden;
+
+}
+
+.front{
+
+    background:purple;
+
+}
+
+.back{
+
+    background:orange;
+
+    transform:rotateY(180deg);
+
+}
+
+.flip:hover .flip-card{
+
+    transform:rotateY(180deg);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>CSS Transform Examples</h1>
+
+<div class="container">
+
+<div class="box translate">translate()</div>
+
+<div class="box translateX">translateX()</div>
+
+<div class="box translateY">translateY()</div>
+
+<div class="box scale">scale()</div>
+
+<div class="box scaleX">scaleX()</div>
+
+<div class="box scaleY">scaleY()</div>
+
+<div class="box rotate">rotate()</div>
+
+<div class="box rotateX">rotateX()</div>
+
+<div class="box rotateY">rotateY()</div>
+
+<div class="box rotateZ">rotateZ()</div>
+
+<div class="box skew">skew()</div>
+
+<div class="box skewX">skewX()</div>
+
+<div class="box skewY">skewY()</div>
+
+<div class="box multiple">Multiple</div>
+
+<div class="box matrix">Matrix</div>
+
+<div class="box origin">Origin</div>
+
+<div class="box will">Will Change</div>
+
+</div>
+
+<hr>
+
+<h1>Perspective Example</h1>
+
+<div class="perspective">
+
+<div class="card">
+
+Hover
+
+</div>
+
+</div>
+
+<hr>
+
+<h1>transform-style: preserve-3d</h1>
+
+<div class="parent">
+
+<div class="cube">
+
+3D Cube
+
+</div>
+
+</div>
+
+<hr>
+
+<h1>backface-visibility</h1>
+
+<div class="flip">
+
+<div class="flip-card">
+
+<div class="front">
+
+Front
+
+</div>
+
+<div class="back">
+
+Back
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

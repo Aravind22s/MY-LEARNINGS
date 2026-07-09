@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Productivity Dashboard</title>
+</head>
+<body>
+
+  <h1 id="title"></h1>
+
+  <!-- USER -->
+  <form id="user-form">
+    <input id="name" placeholder="Enter your name" />
+    <button type="submit">Save User</button>
+  </form>
+
+  <hr />
+
+  <!-- TASKS -->
+  <h2>Tasks</h2>
+  <form id="task-form">
+    <input id="task-input" placeholder="Task title" />
+    <select id="priority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+    <button>Add Task</button>
+  </form>
+  <ul id="task-list"></ul>
+
+  <hr />
+
+  <!-- LEARNING TRACKER -->
+  <h2>Learning Tracker</h2>
+  <form id="session-form">
+    <input id="topic" placeholder="Topic" />
+    <input id="duration" type="number" placeholder="Minutes" />
+    <button>Add Session</button>
+  </form>
+  <p id="stats"></p>
+  <ul id="session-list"></ul>
+
+  <hr />
+
+  <!-- ASYNC API -->
+  <h2>Daily Advice</h2>
+  <button id="load-quote">Load Advice</button>
+  <p id="quote"></p>
+  <p id="quote-status"></p>
+
+  <hr />
+  <!-- RESET THE LOCAL DATA -->
+  <button id="reset">Reset App</button>
+
+  <script src="server.js"></script>
+</body>
+</html>

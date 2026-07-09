@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Tags — Cheatsheet</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f12;
+    --surface: #13161b;
+    --surface2: #1b1f27;
+    --border: #252a35;
+    --accent: #f7c948;
+    --accent2: #4af0c4;
+    --accent3: #f06a6a;
+    --accent4: #7b9ef8;
+    --text: #d8dde8;
+    --text-dim: #7a8299;
+    --text-bright: #eef0f5;
+    --tag-color: #f7c948;
+    --attr-color: #4af0c4;
+    --val-color: #f06a6a;
+    --comment-color: #4b5468;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--accent);
+    padding: 28px 40px 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .header-left {}
+
+  .header-badge {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    display: inline-block;
+    padding: 2px 8px;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-bright);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .header-meta {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    font-family: var(--sans);
+    font-weight: 300;
+  }
+
+  .header-stats {
+    display: flex;
+    gap: 24px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent2);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ─── LAYOUT ─── */
+  .main {
+    padding: 32px 40px 60px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } .main { padding: 20px; } header { padding: 20px; flex-direction: column; align-items: flex-start; } }
+
+  /* ─── SECTION CARD ─── */
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    animation: fadeIn 0.4s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(1) { animation-delay: 0.04s; }
+  .section:nth-child(2) { animation-delay: 0.08s; }
+  .section:nth-child(3) { animation-delay: 0.12s; }
+  .section:nth-child(4) { animation-delay: 0.16s; }
+  .section:nth-child(5) { animation-delay: 0.20s; }
+  .section:nth-child(6) { animation-delay: 0.24s; }
+  .section:nth-child(7) { animation-delay: 0.28s; }
+  .section:nth-child(8) { animation-delay: 0.32s; }
+  .section:nth-child(9) { animation-delay: 0.36s; }
+
+  .section-header {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-icon {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-family: var(--sans);
+  }
+
+  .section-count {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+
+  /* ─── TAG ROWS ─── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s ease;
+  }
+
+  tr:last-child { border-bottom: none; }
+
+  tr:hover {
+    background: var(--surface2);
+  }
+
+  td {
+    padding: 7px 14px;
+    vertical-align: top;
+  }
+
+  td:first-child {
+    width: 38%;
+    padding-right: 6px;
+    white-space: nowrap;
+  }
+
+  .tag {
+    color: var(--tag-color);
+    font-weight: 600;
+    font-size: 12.5px;
+  }
+
+  .tag-desc {
+    color: var(--text-dim);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .tag-badge {
+    font-size: 9px;
+    font-family: var(--sans);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+
+  .badge-new   { background: #1a3d2b; color: #4af0c4; }
+  .badge-dep   { background: #3b1a1a; color: #f06a6a; }
+  .badge-block { background: #1e2240; color: #7b9ef8; }
+  .badge-inline{ background: #2e2210; color: #f7c948; }
+  .badge-void  { background: #2a1f3d; color: #c47bf8; }
+
+  /* ─── ATTRIBUTE MINI SECTION ─── */
+  .attr-row {
+    background: var(--bg);
+  }
+
+  .attr-row td {
+    padding: 5px 14px;
+  }
+
+  .attr-name {
+    color: var(--attr-color);
+    font-size: 12px;
+  }
+
+  .attr-val {
+    color: var(--val-color);
+    font-size: 11px;
+  }
+
+  /* ─── SYNTAX EXAMPLE BLOCK ─── */
+  .example-block {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 10px 16px;
+    font-size: 11.5px;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+
+  .ex-comment { color: var(--comment-color); }
+  .ex-tag     { color: var(--tag-color); }
+  .ex-attr    { color: var(--attr-color); }
+  .ex-val     { color: var(--val-color); }
+  .ex-text    { color: var(--text-dim); }
+
+  /* ─── COLOR LEGEND ─── */
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 24px 0 20px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: var(--sans);
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  /* ─── FULL-WIDTH SECTION ─── */
+  .full { grid-column: 1 / -1; }
+
+  .two-col { grid-column: span 2; }
+
+  /* ─── SCROLL HINT ─── */
+  .scroll-hint {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    margin-top: 4px;
+    padding-left: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── CATEGORY COLORS ─── */
+  .c-doc    { background: #7b9ef8; }
+  .c-text   { background: #f7c948; }
+  .c-block  { background: #4af0c4; }
+  .c-form   { background: #f06a6a; }
+  .c-media  { background: #c47bf8; }
+  .c-table  { background: #f5a623; }
+  .c-meta   { background: #6ee7b7; }
+  .c-link   { background: #60b8f5; }
+  .c-script { background: #fb7185; }
+
+  .t-doc    { color: #7b9ef8; }
+  .t-text   { color: #f7c948; }
+  .t-block  { color: #4af0c4; }
+  .t-form   { color: #f06a6a; }
+  .t-media  { color: #c47bf8; }
+  .t-table  { color: #f5a623; }
+  .t-meta   { color: #6ee7b7; }
+  .t-link   { color: #60b8f5; }
+  .t-script { color: #fb7185; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: var(--text-dim);
+    font-family: var(--sans);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="header-badge">Developer Reference</div>
+    <h1><span>&lt;</span>HTML Tags<span>&gt;</span></h1>
+    <div class="header-meta">Quick reference for all essential HTML5 elements · color-coded by category · includes attributes &amp; examples</div>
+  </div>
+  <div class="header-stats">
+    <div class="stat"><div class="stat-num">110+</div><div class="stat-label">Tags</div></div>
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-num">HTML5</div><div class="stat-label">Standard</div></div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot c-doc"></div> Document Structure</div>
+    <div class="legend-item"><div class="legend-dot c-text"></div> Text &amp; Inline</div>
+    <div class="legend-item"><div class="legend-dot c-block"></div> Block / Sectioning</div>
+    <div class="legend-item"><div class="legend-dot c-form"></div> Forms &amp; Input</div>
+    <div class="legend-item"><div class="legend-dot c-media"></div> Media &amp; Embeds</div>
+    <div class="legend-item"><div class="legend-dot c-table"></div> Tables</div>
+    <div class="legend-item"><div class="legend-dot c-meta"></div> Metadata &amp; Head</div>
+    <div class="legend-item"><div class="legend-dot c-link"></div> Links &amp; Navigation</div>
+    <div class="legend-item"><div class="legend-dot c-script"></div> Scripting</div>
+    <div style="margin-left:auto;display:flex;gap:16px;">
+      <div class="legend-item"><span class="tag-badge badge-block">block</span> Block element</div>
+      <div class="legend-item"><span class="tag-badge badge-inline">inline</span> Inline element</div>
+      <div class="legend-item"><span class="tag-badge badge-void">void</span> Self-closing</div>
+      <div class="legend-item"><span class="tag-badge badge-new">new</span> HTML5</div>
+      <div class="legend-item"><span class="tag-badge badge-dep">dep</span> Deprecated</div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- ① DOCUMENT STRUCTURE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon c-doc"></div>
+        <span class="section-title t-doc">Document Structure</span>
+        <span class="section-count">8 tags</span>
+      </div>
+      <table>
+        <tr><td><span class="tag">&lt;!DOCTYPE&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Document type declaration — must be first line</td></tr>
+        <tr><td><span class="tag">&lt;html&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Root element of an HTML document</td></tr>
+        <tr><td><span class="tag">&lt;head&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Container for metadata &amp; document-level resources</td></tr>
+        <tr><td><span class="tag">&lt;body&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">All visible page content lives here</td></tr>
+        <tr><td><span class="tag">&lt;header&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Introductory content / site header</td></tr>
+        <tr><td><span class="tag">&lt;main&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Primary, unique content of the page</td></tr>
+        <tr><td><span class="tag">&lt;footer&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Footer for a section or page</td></tr>
+        <tr><td><span class="tag">&lt;template&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Holds client-side HTML not rendered on load</td></tr>
+      </table>
+      <div class="example-block">
+        <span class="ex-comment">&lt;!-- Minimal HTML5 skeleton --&gt;</span><br>
+        <span class="ex-tag">&lt;!DOCTYPE</span> <span class="ex-attr">html</span><span class="ex-tag">&gt;</span><br>
+        <span class="ex-tag">&lt;html</span> <span class="ex-attr">lang=</span><span class="ex-val">"en"</span><span class="ex-tag">&gt;</span><br>
+        &nbsp;&nbsp;<span class="ex-tag">&lt;head&gt;&lt;/head&gt;</span><br>
+        &nbsp;&nbsp;<span class="ex-tag">&lt;body&gt;&lt;/body&gt;</span><br>
+        <span class="ex-tag">&lt;/html&gt;</span>
+      </div>
+    </div>
+
+    <!-- ② METADATA & HEAD -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon c-meta"></div>
+        <span class="section-title t-meta">Metadata &amp; Head</span>
+        <span class="section-count">7 tags</span>
+      </div>
+      <table>
+        <tr><td><span class="tag">&lt;title&gt;</span></td><td class="tag-desc">Page title shown in browser tab &amp; search results</td></tr>
+        <tr><td><span class="tag">&lt;meta&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Metadata: charset, viewport, description, OG tags…</td></tr>
+        <tr><td><span class="tag">&lt;link&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Rel. to external stylesheet, icon, preload etc.</td></tr>
+        <tr><td><span class="tag">&lt;style&gt;</span></td><td class="tag-desc">Embedded CSS styles</td></tr>
+        <tr><td><span class="tag">&lt;script&gt;</span></td><td class="tag-desc">Inline or linked JavaScript</td></tr>
+        <tr><td><span class="tag">&lt;base&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Specifies base URL for all relative links</td></tr>
+        <tr><td><span class="tag">&lt;noscript&gt;</span></td><td class="tag-desc">Fallback if JS is disabled</td></tr>
+      </table>
+      <div class="example-block">
+        <span class="ex-tag">&lt;meta</span> <span class="ex-attr">charset=</span><span class="ex-val">"UTF-8"</span><span class="ex-tag">&gt;</span><br>
+        <span class="ex-tag">&lt;meta</span> <span class="ex-attr">name=</span><span class="ex-val">"viewport"</span> <span class="ex-attr">content=</span><span class="ex-val">"width=device-width"</span><span class="ex-tag">&gt;</span><br>
+        <span class="ex-tag">&lt;link</span> <span class="ex-attr">rel=</span><span class="ex-val">"stylesheet"</span> <span class="ex-attr">href=</span><span class="ex-val">"style.css"</span><span class="ex-tag">&gt;</span><br>
+        <span class="ex-tag">&lt;script</span> <span class="ex-attr">defer src=</span><span class="ex-val">"app.js"</span><span class="ex-tag">&gt;&lt;/script&gt;</span>
+      </div>
+    </div>
+
+    <!-- ③ BLOCK / SECTIONING -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon c-block"></div>
+        <span class="section-title t-block">Block &amp; Sectioning</span>
+        <span class="section-count">15 tags</span>
+      </div>
+      <table>
+        <tr><td><span class="tag">&lt;div&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Generic block container, no semantic meaning</td></tr>
+        <tr><td><span class="tag">&lt;section&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Standalone thematic section of content</td></tr>
+        <tr><td><span class="tag">&lt;article&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Self-contained piece (blog post, card, comment)</td></tr>
+        <tr><td><span class="tag">&lt;aside&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Tangentially related content (sidebar)</td></tr>
+        <tr><td><span class="tag">&lt;nav&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Navigation links section</td></tr>
+        <tr><td><span class="tag">&lt;h1&gt;–&lt;h6&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Headings, h1 = most important, h6 = least</td></tr>
+        <tr><td><span class="tag">&lt;p&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Paragraph of text</td></tr>
+        <tr><td><span class="tag">&lt;hr&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Thematic break / horizontal rule</td></tr>
+        <tr><td><span class="tag">&lt;blockquote&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Quoted content from another source</td></tr>
+        <tr><td><span class="tag">&lt;pre&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Preformatted text (preserves whitespace)</td></tr>
+        <tr><td><span class="tag">&lt;figure&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Self-contained figure (image + caption)</td></tr>
+        <tr><td><span class="tag">&lt;figcaption&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Caption for a &lt;figure&gt;</td></tr>
+        <tr><td><span class="tag">&lt;details&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Disclosure widget (collapsible)</td></tr>
+        <tr><td><span class="tag">&lt;summary&gt;</span><span class="tag-badge badge-inline">inline</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Visible heading for &lt;details&gt;</td></tr>
+        <tr><td><span class="tag">&lt;dialog&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Modal or non-modal dialog box</td></tr>
+      </table>
+    </div>
+
+    <!-- ④ TEXT & INLINE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon c-text"></div>
+        <span class="section-title t-text">Text &amp; Inline</span>
+        <span class="section-count">22 tags</span>
+      </div>
+      <table>
+        <tr><td><span class="tag">&lt;span&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Generic inline container (no meaning)</td></tr>
+        <tr><td><span class="tag">&lt;a&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Hyperlink — <code class="attr-name">href</code>, <code class="attr-name">target</code>, <code class="attr-name">rel</code></td></tr>
+        <tr><td><span class="tag">&lt;strong&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Strong importance (bold)</td></tr>
+        <tr><td><span class="tag">&lt;em&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Stressed emphasis (italic)</td></tr>
+        <tr><td><span class="tag">&lt;b&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Bold text (stylistic only, no semantic weight)</td></tr>
+        <tr><td><span class="tag">&lt;i&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Italic text (technical terms, foreign words)</td></tr>
+        <tr><td><span class="tag">&lt;u&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Unarticulated annotation (underline)</td></tr>
+        <tr><td><span class="tag">&lt;s&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Strikethrough — no longer accurate</td></tr>
+        <tr><td><span class="tag">&lt;del&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Deleted text (editorial strikethrough)</td></tr>
+        <tr><td><span class="tag">&lt;ins&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Inserted text (editorial addition)</td></tr>
+        <tr><td><span class="tag">&lt;mark&gt;</span><span class="tag-badge badge-inline">inline</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Highlighted / relevant text</td></tr>
+        <tr><td><span class="tag">&lt;code&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Inline code snippet</td></tr>
+        <tr><td><span class="tag">&lt;kbd&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Keyboard input (e.g. <kbd>Ctrl+C</kbd>)</td></tr>
+        <tr><td><span class="tag">&lt;samp&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Sample program output</td></tr>
+        <tr><td><span class="tag">&lt;var&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Mathematical or programming variable</td></tr>
+        <tr><td><span class="tag">&lt;abbr&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Abbreviation/acronym + <code class="attr-name">title</code> tooltip</td></tr>
+        <tr><td><span class="tag">&lt;cite&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Title of a creative work</td></tr>
+        <tr><td><span class="tag">&lt;q&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Short inline quotation</td></tr>
+        <tr><td><span class="tag">&lt;sup&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Superscript text (footnotes, exponents)</td></tr>
+        <tr><td><span class="tag">&lt;sub&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Subscript text (chemical formulas)</td></tr>
+        <tr><td><span class="tag">&lt;small&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Small print — disclaimers, copyright</td></tr>
+        <tr><td><span class="tag">&lt;br&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Line break (use sparingly)</td></tr>
+      </table>
+    </div>
+
+    <!-- ⑤ LINKS & LISTS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon c-link"></div>
+        <span class="section-title t-link">Links &amp; Lists</span>
+        <span class="section-count">8 tags</span>
+      </div>
+      <table>
+        <tr><td><span class="tag">&lt;a&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Anchor / hyperlink</td></tr>
+        <tr><td><span class="tag">&lt;ul&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Unordered (bulleted) list</td></tr>
+        <tr><td><span class="tag">&lt;ol&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Ordered (numbered) list — attrs: <code class="attr-name">start</code>, <code class="attr-name">reversed</code></td></tr>
+        <tr><td><span class="tag">&lt;li&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">List item (child of &lt;ul&gt; or &lt;ol&gt;)</td></tr>
+        <tr><td><span class="tag">&lt;dl&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Description list</td></tr>
+        <tr><td><span class="tag">&lt;dt&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Description term</td></tr>
+        <tr><td><span class="tag">&lt;dd&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Description detail / definition</td></tr>
+        <tr><td><span class="tag">&lt;menu&gt;</span><span class="tag-badge badge-block">block</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Toolbar menu list of commands</td></tr>
+      </table>
+      <div class="example-block">
+        <span class="ex-tag">&lt;a</span> <span class="ex-attr">href=</span><span class="ex-val">"https://..."</span> <span class="ex-attr">target=</span><span class="ex-val">"_blank"</span> <span class="ex-attr">rel=</span><span class="ex-val">"noopener"</span><span class="ex-tag">&gt;</span><span class="ex-text">Link</span><span class="ex-tag">&lt;/a&gt;</span><br>
+        <span class="ex-tag">&lt;ol</span> <span class="ex-attr">start=</span><span class="ex-val">"3"</span> <span class="ex-attr">reversed</span><span class="ex-tag">&gt;</span><br>
+        &nbsp;&nbsp;<span class="ex-tag">&lt;li&gt;</span><span class="ex-text">Item C</span><span class="ex-tag">&lt;/li&gt;</span><br>
+        <span class="ex-tag">&lt;/ol&gt;</span>
+      </div>
+    </div>
+
+    <!-- ⑥ FORMS & INPUT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon c-form"></div>
+        <span class="section-title t-form">Forms &amp; Input</span>
+        <span class="section-count">18 tags</span>
+      </div>
+      <table>
+        <tr><td><span class="tag">&lt;form&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Form container — <code class="attr-name">action</code>, <code class="attr-name">method</code>, <code class="attr-name">enctype</code></td></tr>
+        <tr><td><span class="tag">&lt;input&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Interactive control — over 20 types available</td></tr>
+        <tr><td><span class="tag">&lt;textarea&gt;</span></td><td class="tag-desc">Multi-line text input — <code class="attr-name">rows</code>, <code class="attr-name">cols</code></td></tr>
+        <tr><td><span class="tag">&lt;select&gt;</span></td><td class="tag-desc">Drop-down select list</td></tr>
+        <tr><td><span class="tag">&lt;option&gt;</span></td><td class="tag-desc">Item inside &lt;select&gt; or &lt;datalist&gt;</td></tr>
+        <tr><td><span class="tag">&lt;optgroup&gt;</span></td><td class="tag-desc">Groups related options with a label</td></tr>
+        <tr><td><span class="tag">&lt;label&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Caption for a form control — use <code class="attr-name">for</code> attr</td></tr>
+        <tr><td><span class="tag">&lt;button&gt;</span><span class="tag-badge badge-inline">inline</span></td><td class="tag-desc">Clickable button — types: submit, reset, button</td></tr>
+        <tr><td><span class="tag">&lt;fieldset&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Groups related fields visually and semantically</td></tr>
+        <tr><td><span class="tag">&lt;legend&gt;</span></td><td class="tag-desc">Caption for &lt;fieldset&gt;</td></tr>
+        <tr><td><span class="tag">&lt;datalist&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Autocomplete suggestions for &lt;input&gt;</td></tr>
+        <tr><td><span class="tag">&lt;output&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Result of a calculation or user action</td></tr>
+        <tr><td><span class="tag">&lt;progress&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Progress bar — <code class="attr-name">value</code>, <code class="attr-name">max</code></td></tr>
+        <tr><td><span class="tag">&lt;meter&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Scalar measurement (disk usage, rating)</td></tr>
+        <tr><td><span class="tag">&lt;search&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Semantic wrapper for search functionality</td></tr>
+      </table>
+      <div class="example-block">
+        <span class="ex-comment">&lt;!-- Input types --&gt;</span><br>
+        <span class="ex-attr">text · email · password · number</span><br>
+        <span class="ex-attr">checkbox · radio · range · file</span><br>
+        <span class="ex-attr">date · time · color · tel · url</span><br>
+        <span class="ex-attr">hidden · submit · reset · search</span>
+      </div>
+    </div>
+
+    <!-- ⑦ MEDIA & EMBEDS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon c-media"></div>
+        <span class="section-title t-media">Media &amp; Embeds</span>
+        <span class="section-count">12 tags</span>
+      </div>
+      <table>
+        <tr><td><span class="tag">&lt;img&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Image — <code class="attr-name">src</code>, <code class="attr-name">alt</code>, <code class="attr-name">width</code>, <code class="attr-name">height</code>, <code class="attr-name">loading</code></td></tr>
+        <tr><td><span class="tag">&lt;picture&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Responsive image container (holds &lt;source&gt; + &lt;img&gt;)</td></tr>
+        <tr><td><span class="tag">&lt;source&gt;</span><span class="tag-badge badge-void">void</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Media resource for &lt;picture&gt;, &lt;audio&gt;, &lt;video&gt;</td></tr>
+        <tr><td><span class="tag">&lt;video&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Video player — <code class="attr-name">src</code>, <code class="attr-name">controls</code>, <code class="attr-name">autoplay</code>, <code class="attr-name">loop</code></td></tr>
+        <tr><td><span class="tag">&lt;audio&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Audio player — <code class="attr-name">src</code>, <code class="attr-name">controls</code>, <code class="attr-name">muted</code></td></tr>
+        <tr><td><span class="tag">&lt;track&gt;</span><span class="tag-badge badge-void">void</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Subtitles / captions for &lt;video&gt;/&lt;audio&gt;</td></tr>
+        <tr><td><span class="tag">&lt;canvas&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">2D/3D graphics via JavaScript API</td></tr>
+        <tr><td><span class="tag">&lt;svg&gt;</span></td><td class="tag-desc">Inline SVG vector graphics</td></tr>
+        <tr><td><span class="tag">&lt;iframe&gt;</span></td><td class="tag-desc">Embedded browsing context (another HTML page)</td></tr>
+        <tr><td><span class="tag">&lt;embed&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Embeds external content / plugin</td></tr>
+        <tr><td><span class="tag">&lt;object&gt;</span></td><td class="tag-desc">External resource container (PDF, Flash legacy)</td></tr>
+        <tr><td><span class="tag">&lt;map&gt;</span> / <span class="tag">&lt;area&gt;</span></td><td class="tag-desc">Image maps with clickable regions</td></tr>
+      </table>
+      <div class="example-block">
+        <span class="ex-tag">&lt;picture&gt;</span><br>
+        &nbsp;<span class="ex-tag">&lt;source</span> <span class="ex-attr">media=</span><span class="ex-val">"(min-width:800px)"</span> <span class="ex-attr">srcset=</span><span class="ex-val">"lg.webp"</span><span class="ex-tag">&gt;</span><br>
+        &nbsp;<span class="ex-tag">&lt;img</span> <span class="ex-attr">src=</span><span class="ex-val">"sm.jpg"</span> <span class="ex-attr">alt=</span><span class="ex-val">"..."</span> <span class="ex-attr">loading=</span><span class="ex-val">"lazy"</span><span class="ex-tag">&gt;</span><br>
+        <span class="ex-tag">&lt;/picture&gt;</span>
+      </div>
+    </div>
+
+    <!-- ⑧ TABLES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon c-table"></div>
+        <span class="section-title t-table">Tables</span>
+        <span class="section-count">10 tags</span>
+      </div>
+      <table>
+        <tr><td><span class="tag">&lt;table&gt;</span><span class="tag-badge badge-block">block</span></td><td class="tag-desc">Defines a data table</td></tr>
+        <tr><td><span class="tag">&lt;thead&gt;</span></td><td class="tag-desc">Groups header rows (&lt;tr&gt; with &lt;th&gt;)</td></tr>
+        <tr><td><span class="tag">&lt;tbody&gt;</span></td><td class="tag-desc">Groups body rows (&lt;tr&gt; with &lt;td&gt;)</td></tr>
+        <tr><td><span class="tag">&lt;tfoot&gt;</span></td><td class="tag-desc">Groups footer rows (summary, totals)</td></tr>
+        <tr><td><span class="tag">&lt;tr&gt;</span></td><td class="tag-desc">Table row — child of &lt;thead/tbody/tfoot&gt;</td></tr>
+        <tr><td><span class="tag">&lt;th&gt;</span></td><td class="tag-desc">Header cell — <code class="attr-name">scope</code>: col | row | colgroup</td></tr>
+        <tr><td><span class="tag">&lt;td&gt;</span></td><td class="tag-desc">Data cell — <code class="attr-name">colspan</code>, <code class="attr-name">rowspan</code></td></tr>
+        <tr><td><span class="tag">&lt;caption&gt;</span></td><td class="tag-desc">Table title/description (first child)</td></tr>
+        <tr><td><span class="tag">&lt;col&gt;</span><span class="tag-badge badge-void">void</span></td><td class="tag-desc">Defines column properties within &lt;colgroup&gt;</td></tr>
+        <tr><td><span class="tag">&lt;colgroup&gt;</span></td><td class="tag-desc">Groups columns for styling</td></tr>
+      </table>
+      <div class="example-block">
+        <span class="ex-tag">&lt;table&gt;</span><br>
+        &nbsp;<span class="ex-tag">&lt;thead&gt;&lt;tr&gt;&lt;th</span> <span class="ex-attr">scope=</span><span class="ex-val">"col"</span><span class="ex-tag">&gt;</span><span class="ex-text">Name</span><span class="ex-tag">&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</span><br>
+        &nbsp;<span class="ex-tag">&lt;tbody&gt;&lt;tr&gt;&lt;td</span> <span class="ex-attr">colspan=</span><span class="ex-val">"2"</span><span class="ex-tag">&gt;</span><span class="ex-text">Data</span><span class="ex-tag">&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;</span><br>
+        <span class="ex-tag">&lt;/table&gt;</span>
+      </div>
+    </div>
+
+    <!-- ⑨ SCRIPTING & INTERACTIVE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon c-script"></div>
+        <span class="section-title t-script">Scripting &amp; Interactive</span>
+        <span class="section-count">6 tags</span>
+      </div>
+      <table>
+        <tr><td><span class="tag">&lt;script&gt;</span></td><td class="tag-desc">Embeds or links JS — <code class="attr-name">defer</code>, <code class="attr-name">async</code>, <code class="attr-name">type</code></td></tr>
+        <tr><td><span class="tag">&lt;noscript&gt;</span></td><td class="tag-desc">Fallback for no-JS environments</td></tr>
+        <tr><td><span class="tag">&lt;canvas&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Scriptable drawing surface (2D/WebGL)</td></tr>
+        <tr><td><span class="tag">&lt;template&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Inert HTML fragment cloned by JS</td></tr>
+        <tr><td><span class="tag">&lt;slot&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Web Component content placeholder</td></tr>
+        <tr><td><span class="tag">&lt;dialog&gt;</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Native modal/dialog — use <code class="attr-name">.showModal()</code></td></tr>
+      </table>
+      <div class="example-block">
+        <span class="ex-comment">&lt;!-- async vs defer --&gt;</span><br>
+        <span class="ex-tag">&lt;script</span> <span class="ex-attr">async</span><span class="ex-tag">&gt;</span> <span class="ex-comment">// runs when downloaded (no order)</span><br>
+        <span class="ex-tag">&lt;script</span> <span class="ex-attr">defer</span><span class="ex-tag">&gt;</span> <span class="ex-comment">// runs after DOM parsed (ordered)</span><br>
+        <span class="ex-tag">&lt;script</span> <span class="ex-attr">type=</span><span class="ex-val">"module"</span><span class="ex-tag">&gt;</span> <span class="ex-comment">// ES module (deferred by default)</span>
+      </div>
+    </div>
+
+    <!-- GLOBAL ATTRIBUTES - FULL WIDTH -->
+    <div class="section full">
+      <div class="section-header">
+        <div class="section-icon" style="background:#a78bfa"></div>
+        <span class="section-title" style="color:#a78bfa">Global Attributes</span>
+        <span class="section-count">apply to any HTML element</span>
+      </div>
+      <table>
+        <tr>
+          <td><span class="tag" style="color:#a78bfa">id</span></td><td class="tag-desc">Unique identifier — used for anchors, JS targeting, CSS <code>#id</code> selectors</td>
+          <td><span class="tag" style="color:#a78bfa">class</span></td><td class="tag-desc">Space-separated CSS classes for styling and JS selection</td>
+          <td><span class="tag" style="color:#a78bfa">style</span></td><td class="tag-desc">Inline CSS declaration — overrides external styles</td>
+          <td><span class="tag" style="color:#a78bfa">title</span></td><td class="tag-desc">Tooltip text shown on hover</td>
+        </tr>
+        <tr>
+          <td><span class="tag" style="color:#a78bfa">lang</span></td><td class="tag-desc">Language of the element's content (e.g. <code class="attr-val">"en"</code>, <code class="attr-val">"fr"</code>)</td>
+          <td><span class="tag" style="color:#a78bfa">dir</span></td><td class="tag-desc">Text direction: <code class="attr-val">ltr</code>, <code class="attr-val">rtl</code>, <code class="attr-val">auto</code></td>
+          <td><span class="tag" style="color:#a78bfa">hidden</span></td><td class="tag-desc">Boolean — hides element from display and accessibility tree</td>
+          <td><span class="tag" style="color:#a78bfa">tabindex</span></td><td class="tag-desc">Controls keyboard focus order (<code class="attr-val">0</code>, <code class="attr-val">-1</code>, or positive integer)</td>
+        </tr>
+        <tr>
+          <td><span class="tag" style="color:#a78bfa">data-*</span></td><td class="tag-desc">Custom data attributes — access via <code>el.dataset.name</code> in JS</td>
+          <td><span class="tag" style="color:#a78bfa">aria-*</span></td><td class="tag-desc">Accessibility roles and states (ARIA) for screen readers</td>
+          <td><span class="tag" style="color:#a78bfa">role</span></td><td class="tag-desc">ARIA landmark role (e.g. <code class="attr-val">button</code>, <code class="attr-val">alert</code>, <code class="attr-val">dialog</code>)</td>
+          <td><span class="tag" style="color:#a78bfa">contenteditable</span></td><td class="tag-desc">Makes element's content editable in browser</td>
+        </tr>
+        <tr>
+          <td><span class="tag" style="color:#a78bfa">draggable</span></td><td class="tag-desc">Enables HTML Drag and Drop API on element</td>
+          <td><span class="tag" style="color:#a78bfa">spellcheck</span></td><td class="tag-desc">Browser spell checking on editable content</td>
+          <td><span class="tag" style="color:#a78bfa">translate</span></td><td class="tag-desc">Whether content should be translated (<code class="attr-val">yes</code>/<code class="attr-val">no</code>)</td>
+          <td><span class="tag" style="color:#a78bfa">inert</span><span class="tag-badge badge-new">new</span></td><td class="tag-desc">Makes subtree non-interactive and invisible to AT</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- DEPRECATED - FULL WIDTH -->
+    <div class="section full">
+      <div class="section-header">
+        <div class="section-icon" style="background:#f06a6a"></div>
+        <span class="section-title t-form">Deprecated Tags — Avoid These</span>
+        <span class="section-count">use CSS or semantic HTML instead</span>
+      </div>
+      <table>
+        <tr>
+          <td><span class="tag"><del>&lt;center&gt;</del></span><span class="tag-badge badge-dep">dep</span></td><td class="tag-desc">Use <code>text-align: center</code> in CSS</td>
+          <td><span class="tag"><del>&lt;font&gt;</del></span><span class="tag-badge badge-dep">dep</span></td><td class="tag-desc">Use <code>font-family</code>, <code>color</code>, <code>font-size</code> in CSS</td>
+          <td><span class="tag"><del>&lt;strike&gt;</del></span><span class="tag-badge badge-dep">dep</span></td><td class="tag-desc">Use <code>&lt;s&gt;</code> or <code>&lt;del&gt;</code></td>
+          <td><span class="tag"><del>&lt;marquee&gt;</del></span><span class="tag-badge badge-dep">dep</span></td><td class="tag-desc">Use CSS animations for scrolling text</td>
+        </tr>
+        <tr>
+          <td><span class="tag"><del>&lt;big&gt;</del></span><span class="tag-badge badge-dep">dep</span></td><td class="tag-desc">Use CSS <code>font-size</code></td>
+          <td><span class="tag"><del>&lt;blink&gt;</del></span><span class="tag-badge badge-dep">dep</span></td><td class="tag-desc">Use CSS <code>animation</code></td>
+          <td><span class="tag"><del>&lt;frame&gt;</del></span><span class="tag-badge badge-dep">dep</span></td><td class="tag-desc">Use <code>&lt;iframe&gt;</code> or modern layout</td>
+          <td><span class="tag"><del>&lt;frameset&gt;</del></span><span class="tag-badge badge-dep">dep</span></td><td class="tag-desc">Removed from HTML5 entirely</td>
+        </tr>
+      </table>
+    </div>
+
+  </div><!-- /grid -->
+</div><!-- /main -->
+
+<footer>
+  <span>HTML5 Tags Cheatsheet · All essential elements at a glance</span>
+  <span style="color: var(--accent)">⬡ HTML Living Standard · WHATWG</span>
+</footer>
+
+</body>
+</html>

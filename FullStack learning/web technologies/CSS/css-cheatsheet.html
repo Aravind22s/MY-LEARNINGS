@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS — Cheatsheet</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2eb;
+    --paper: #faf8f4;
+    --ink: #1a1714;
+    --ink-mid: #4a4540;
+    --ink-dim: #8a857d;
+    --rule: #ddd8cf;
+    --accent: #c0392b;
+
+    /* category colors */
+    --c1: #c0392b; /* selectors - red */
+    --c2: #1a6b8a; /* box model - teal */
+    --c3: #2d7d3a; /* typography - green */
+    --c4: #7b3fa0; /* flexbox - purple */
+    --c5: #c67c00; /* grid - amber */
+    --c6: #1a5fa0; /* positioning - blue */
+    --c7: #9c3535; /* colors - rose */
+    --c8: #2a7a6a; /* transitions - emerald */
+    --c9: #5a4a9a; /* transforms - indigo */
+    --c10: #7a5c1a; /* variables - brown */
+    --c11: #3a6b3a; /* pseudo - forest */
+    --c12: #8a3a7a; /* media queries - magenta */
+
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 36px 48px 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: 'CSS';
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-family: var(--serif);
+    font-size: 220px;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .h-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 52px;
+    line-height: 0.95;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: #f0ede8;
+  }
+
+  .h-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 10px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    max-width: 400px;
+    line-height: 1.6;
+  }
+
+  .h-stats {
+    display: flex;
+    gap: 32px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .h-stat { text-align: center; }
+  .h-stat-n {
+    font-family: var(--serif);
+    font-size: 40px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+  }
+  .h-stat-l {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 2px;
+    display: block;
+  }
+
+  /* ─── CATEGORY STRIP ─── */
+  .cat-strip {
+    display: flex;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .cat-strip::-webkit-scrollbar { display: none; }
+
+  .cat-pill {
+    padding: 10px 18px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-right: 1px solid var(--rule);
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    color: var(--ink-mid);
+  }
+
+  .cat-pill:hover { background: var(--bg); }
+
+  .cat-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ─── MAIN LAYOUT ─── */
+  .main { padding: 32px 48px 72px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 680px)  { .grid { grid-template-columns: 1fr; } .main { padding: 20px; } header { padding: 24px; flex-direction: column; align-items: flex-start; } }
+
+  /* ─── CARD ─── */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+    animation: rise 0.45s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:nth-child(1)  { animation-delay:0.04s; border-top-color: var(--c1); }
+  .card:nth-child(2)  { animation-delay:0.07s; border-top-color: var(--c2); }
+  .card:nth-child(3)  { animation-delay:0.10s; border-top-color: var(--c3); }
+  .card:nth-child(4)  { animation-delay:0.13s; border-top-color: var(--c4); }
+  .card:nth-child(5)  { animation-delay:0.16s; border-top-color: var(--c5); }
+  .card:nth-child(6)  { animation-delay:0.19s; border-top-color: var(--c6); }
+  .card:nth-child(7)  { animation-delay:0.22s; border-top-color: var(--c7); }
+  .card:nth-child(8)  { animation-delay:0.25s; border-top-color: var(--c8); }
+  .card:nth-child(9)  { animation-delay:0.28s; border-top-color: var(--c9); }
+  .card:nth-child(10) { animation-delay:0.31s; border-top-color: var(--c10); }
+  .card:nth-child(11) { animation-delay:0.34s; border-top-color: var(--c11); }
+  .card:nth-child(12) { animation-delay:0.37s; border-top-color: var(--c12); }
+
+  .card-head {
+    padding: 11px 16px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg);
+  }
+
+  .card-icon { width: 9px; height: 9px; border-radius: 1px; flex-shrink: 0; }
+
+  .card-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+  }
+
+  .card-count {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--ink-dim);
+    font-family: var(--mono);
+  }
+
+  /* ─── PROPERTY ROWS ─── */
+  .prop-table { width: 100%; border-collapse: collapse; }
+
+  .prop-table tr {
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.1s;
+  }
+  .prop-table tr:last-child { border-bottom: none; }
+  .prop-table tr:hover { background: rgba(0,0,0,0.025); }
+
+  .prop-table td { padding: 6px 14px; vertical-align: top; }
+  .prop-table td:first-child { width: 42%; padding-right: 4px; }
+
+  .prop { font-family: var(--mono); font-size: 12px; font-weight: 500; }
+  .prop-desc { font-size: 11.5px; color: var(--ink-mid); font-weight: 300; line-height: 1.45; }
+
+  .vals {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-dim);
+    display: block;
+    margin-top: 1px;
+  }
+
+  /* ─── CODE EXAMPLE ─── */
+  .example {
+    background: var(--ink);
+    padding: 11px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.75;
+    color: #c8c4be;
+    border-top: 1px solid var(--rule);
+    overflow-x: auto;
+  }
+
+  .e-sel   { color: #e0a06a; }
+  .e-prop  { color: #86c5d8; }
+  .e-val   { color: #a3d98a; }
+  .e-unit  { color: #d4b8f0; }
+  .e-comment { color: #5a5650; }
+  .e-at    { color: #f0c06a; }
+  .e-punc  { color: #7a7570; }
+
+  /* ─── FULL SPAN ─── */
+  .full { grid-column: 1 / -1; }
+  .span2 { grid-column: span 2; }
+
+  /* ─── TWO-COL TABLE INSIDE FULL CARD ─── */
+  .two-col-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .two-col-wrap > div { border-right: 1px solid var(--rule); }
+  .two-col-wrap > div:last-child { border-right: none; }
+
+  /* ─── SPECIFICITY DIAGRAM ─── */
+  .specificity {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 16px 20px;
+    border-top: 1px solid var(--rule);
+    background: var(--bg);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .spec-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .spec-num {
+    width: 52px; height: 52px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 28px;
+    color: #fff;
+  }
+
+  .spec-lbl {
+    font-size: 9px;
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    text-align: center;
+  }
+
+  .spec-arrow {
+    font-size: 18px;
+    color: var(--ink-dim);
+    padding: 0 4px;
+    margin-top: -16px;
+  }
+
+  .spec-note {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-mid);
+    font-family: var(--mono);
+    line-height: 1.6;
+    max-width: 220px;
+  }
+
+  /* ─── BOX MODEL DIAGRAM ─── */
+  .box-model {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--rule);
+    background: var(--bg);
+  }
+
+  .bm-outer {
+    background: #e8d9c0;
+    padding: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #5a4520;
+    text-align: center;
+    position: relative;
+    min-width: 260px;
+  }
+  .bm-border {
+    background: #c4a87a;
+    padding: 12px;
+    color: #4a3010;
+  }
+  .bm-padding {
+    background: #c8d9b0;
+    padding: 12px;
+    color: #2a4a1a;
+  }
+  .bm-content {
+    background: #a8c4e0;
+    padding: 12px 20px;
+    color: #0a2a4a;
+    font-weight: 500;
+  }
+  .bm-label {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 2px;
+    display: block;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 2px solid var(--ink);
+    padding: 16px 48px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--ink-dim);
+    font-family: var(--mono);
+    background: var(--paper);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="h-eyebrow">Developer Reference · CSS3+</div>
+    <h1><em>Cascading</em><br>Style Sheets</h1>
+    <p class="h-sub">Properties, selectors, units, layout systems, pseudo-classes, animations &amp; more — all essential CSS at a glance.</p>
+  </div>
+  <div class="h-stats">
+    <div class="h-stat"><span class="h-stat-n">12</span><span class="h-stat-l">Sections</span></div>
+    <div class="h-stat"><span class="h-stat-n">150+</span><span class="h-stat-l">Properties</span></div>
+    <div class="h-stat"><span class="h-stat-n">CSS3</span><span class="h-stat-l">Standard</span></div>
+  </div>
+</header>
+
+<div class="cat-strip">
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c1)"></div>Selectors</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c2)"></div>Box Model</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c3)"></div>Typography</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c4)"></div>Flexbox</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c5)"></div>Grid</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c6)"></div>Positioning</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c7)"></div>Colors</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c8)"></div>Transitions</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c9)"></div>Transforms</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c10)"></div>Variables</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c11)"></div>Pseudo</div>
+  <div class="cat-pill"><div class="cat-dot" style="background:var(--c12)"></div>Media</div>
+</div>
+
+<div class="main">
+<div class="grid">
+
+  <!-- ① SELECTORS -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c1)"></div>
+      <span class="card-title" style="color:var(--c1)">Selectors</span>
+      <span class="card-count">20 types</span>
+    </div>
+    <table class="prop-table">
+      <tr><td><span class="prop">*</span></td><td class="prop-desc">Universal — selects all elements</td></tr>
+      <tr><td><span class="prop">element</span></td><td class="prop-desc">Type selector — e.g. <code>p</code>, <code>div</code>, <code>h1</code></td></tr>
+      <tr><td><span class="prop">.class</span></td><td class="prop-desc">Class selector — matches <code>class="…"</code></td></tr>
+      <tr><td><span class="prop">#id</span></td><td class="prop-desc">ID selector — unique per page</td></tr>
+      <tr><td><span class="prop">A, B</span></td><td class="prop-desc">Group — selects both A and B</td></tr>
+      <tr><td><span class="prop">A B</span></td><td class="prop-desc">Descendant — B inside A (any depth)</td></tr>
+      <tr><td><span class="prop">A > B</span></td><td class="prop-desc">Child — direct children only</td></tr>
+      <tr><td><span class="prop">A + B</span></td><td class="prop-desc">Adjacent sibling — B immediately after A</td></tr>
+      <tr><td><span class="prop">A ~ B</span></td><td class="prop-desc">General sibling — all B after A</td></tr>
+      <tr><td><span class="prop">[attr]</span></td><td class="prop-desc">Attribute exists</td></tr>
+      <tr><td><span class="prop">[attr="v"]</span></td><td class="prop-desc">Exact attribute value</td></tr>
+      <tr><td><span class="prop">[attr^="v"]</span></td><td class="prop-desc">Value starts with "v"</td></tr>
+      <tr><td><span class="prop">[attr$="v"]</span></td><td class="prop-desc">Value ends with "v"</td></tr>
+      <tr><td><span class="prop">[attr*="v"]</span></td><td class="prop-desc">Value contains "v"</td></tr>
+      <tr><td><span class="prop">:is(A, B)</span></td><td class="prop-desc">Matches if element is A or B</td></tr>
+      <tr><td><span class="prop">:where(A)</span></td><td class="prop-desc">Like :is() but zero specificity</td></tr>
+      <tr><td><span class="prop">:has(B)</span></td><td class="prop-desc">Parent selector — A that contains B</td></tr>
+      <tr><td><span class="prop">:not(A)</span></td><td class="prop-desc">Negation — excludes A</td></tr>
+    </table>
+    <!-- specificity diagram -->
+    <div class="specificity">
+      <div class="spec-box">
+        <div class="spec-num" style="background:#c0392b">1</div>
+        <div class="spec-lbl">!important<br>/ inline</div>
+      </div>
+      <div class="spec-arrow">›</div>
+      <div class="spec-box">
+        <div class="spec-num" style="background:#7b3fa0">1</div>
+        <div class="spec-lbl">ID<br>#id</div>
+      </div>
+      <div class="spec-arrow">›</div>
+      <div class="spec-box">
+        <div class="spec-num" style="background:#1a6b8a">1</div>
+        <div class="spec-lbl">Class<br>.class</div>
+      </div>
+      <div class="spec-arrow">›</div>
+      <div class="spec-box">
+        <div class="spec-num" style="background:#2d7d3a">1</div>
+        <div class="spec-lbl">Element<br>tag</div>
+      </div>
+      <div class="spec-note">Specificity wins:<br>higher → lower →<br>source order last</div>
+    </div>
+  </div>
+
+  <!-- ② BOX MODEL -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c2)"></div>
+      <span class="card-title" style="color:var(--c2)">Box Model</span>
+      <span class="card-count">14 properties</span>
+    </div>
+    <table class="prop-table">
+      <tr><td><span class="prop">width / height</span></td><td class="prop-desc">Content dimensions<br><span class="vals">px · % · vw/vh · em · rem · auto · min-content</span></td></tr>
+      <tr><td><span class="prop">min/max-width</span></td><td class="prop-desc">Constrains width range</td></tr>
+      <tr><td><span class="prop">min/max-height</span></td><td class="prop-desc">Constrains height range</td></tr>
+      <tr><td><span class="prop">margin</span></td><td class="prop-desc">Outer spacing (can be negative)<br><span class="vals">margin: top right bottom left</span></td></tr>
+      <tr><td><span class="prop">padding</span></td><td class="prop-desc">Inner spacing (no negatives)<br><span class="vals">padding: top right bottom left</span></td></tr>
+      <tr><td><span class="prop">border</span></td><td class="prop-desc">Shorthand: <code>width style color</code><br><span class="vals">solid · dashed · dotted · double · none</span></td></tr>
+      <tr><td><span class="prop">border-radius</span></td><td class="prop-desc">Rounded corners<br><span class="vals">50% = circle · 4px · 1em / 2em (ellipse)</span></td></tr>
+      <tr><td><span class="prop">outline</span></td><td class="prop-desc">Like border but outside — no layout shift</td></tr>
+      <tr><td><span class="prop">box-sizing</span></td><td class="prop-desc"><span class="vals">content-box (default) · border-box ✓ use this</span></td></tr>
+      <tr><td><span class="prop">overflow</span></td><td class="prop-desc"><span class="vals">visible · hidden · scroll · auto · clip</span></td></tr>
+      <tr><td><span class="prop">box-shadow</span></td><td class="prop-desc">Shadow: <code>x y blur spread color</code><br><span class="vals">inset makes inner shadow</span></td></tr>
+      <tr><td><span class="prop">display</span></td><td class="prop-desc"><span class="vals">block · inline · inline-block · flex · grid · none · contents</span></td></tr>
+      <tr><td><span class="prop">visibility</span></td><td class="prop-desc"><span class="vals">visible · hidden (keeps space) · collapse</span></td></tr>
+      <tr><td><span class="prop">opacity</span></td><td class="prop-desc">0 (invisible) → 1 (fully visible)</td></tr>
+    </table>
+    <div class="box-model">
+      <div class="bm-outer">
+        <span class="bm-label">margin</span>
+        <div class="bm-border">
+          <span class="bm-label">border</span>
+          <div class="bm-padding">
+            <span class="bm-label">padding</span>
+            <div class="bm-content">content<br><small style="opacity:0.7">width × height</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ TYPOGRAPHY -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c3)"></div>
+      <span class="card-title" style="color:var(--c3)">Typography</span>
+      <span class="card-count">18 properties</span>
+    </div>
+    <table class="prop-table">
+      <tr><td><span class="prop">font-family</span></td><td class="prop-desc">Typeface stack — always end with generic<br><span class="vals">serif · sans-serif · monospace · cursive</span></td></tr>
+      <tr><td><span class="prop">font-size</span></td><td class="prop-desc">Text size<br><span class="vals">px · em · rem · % · vw · clamp(min, val, max)</span></td></tr>
+      <tr><td><span class="prop">font-weight</span></td><td class="prop-desc"><span class="vals">100–900 · normal (400) · bold (700)</span></td></tr>
+      <tr><td><span class="prop">font-style</span></td><td class="prop-desc"><span class="vals">normal · italic · oblique</span></td></tr>
+      <tr><td><span class="prop">font-variant</span></td><td class="prop-desc"><span class="vals">normal · small-caps · various OpenType features</span></td></tr>
+      <tr><td><span class="prop">font</span></td><td class="prop-desc">Shorthand: <code>style weight size/line-height family</code></td></tr>
+      <tr><td><span class="prop">line-height</span></td><td class="prop-desc">Line spacing — unitless preferred (e.g. 1.5)<br><span class="vals">unitless · px · em · % · normal</span></td></tr>
+      <tr><td><span class="prop">letter-spacing</span></td><td class="prop-desc">Tracking — between characters</td></tr>
+      <tr><td><span class="prop">word-spacing</span></td><td class="prop-desc">Spacing between words</td></tr>
+      <tr><td><span class="prop">text-align</span></td><td class="prop-desc"><span class="vals">left · right · center · justify · start · end</span></td></tr>
+      <tr><td><span class="prop">text-transform</span></td><td class="prop-desc"><span class="vals">uppercase · lowercase · capitalize · none</span></td></tr>
+      <tr><td><span class="prop">text-decoration</span></td><td class="prop-desc"><span class="vals">none · underline · line-through · overline</span></td></tr>
+      <tr><td><span class="prop">text-shadow</span></td><td class="prop-desc">Shadow: <code>x y blur color</code></td></tr>
+      <tr><td><span class="prop">text-overflow</span></td><td class="prop-desc"><span class="vals">clip · ellipsis — needs overflow:hidden</span></td></tr>
+      <tr><td><span class="prop">white-space</span></td><td class="prop-desc"><span class="vals">normal · nowrap · pre · pre-wrap · pre-line</span></td></tr>
+      <tr><td><span class="prop">word-break</span></td><td class="prop-desc"><span class="vals">normal · break-all · keep-all · break-word</span></td></tr>
+      <tr><td><span class="prop">hyphens</span></td><td class="prop-desc"><span class="vals">none · auto · manual</span></td></tr>
+      <tr><td><span class="prop">@font-face</span></td><td class="prop-desc">Load custom fonts with <code>src: url(…)</code></td></tr>
+    </table>
+    <div class="example">
+      <span class="e-comment">/* Fluid type with clamp */</span><br>
+      <span class="e-prop">font-size</span><span class="e-punc">:</span> <span class="e-val">clamp</span><span class="e-punc">(</span><span class="e-unit">1rem</span><span class="e-punc">,</span> <span class="e-unit">2.5vw</span><span class="e-punc">,</span> <span class="e-unit">2rem</span><span class="e-punc">);</span><br>
+      <span class="e-comment">/* Truncate with ellipsis */</span><br>
+      <span class="e-prop">overflow</span><span class="e-punc">:</span> <span class="e-val">hidden</span><span class="e-punc">;</span> <span class="e-prop">white-space</span><span class="e-punc">:</span> <span class="e-val">nowrap</span><span class="e-punc">;</span><br>
+      <span class="e-prop">text-overflow</span><span class="e-punc">:</span> <span class="e-val">ellipsis</span><span class="e-punc">;</span>
+    </div>
+  </div>
+
+  <!-- ④ FLEXBOX -->
+  <div class="card span2">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c4)"></div>
+      <span class="card-title" style="color:var(--c4)">Flexbox</span>
+      <span class="card-count">12 properties — display: flex on parent</span>
+    </div>
+    <div class="two-col-wrap">
+      <div>
+        <table class="prop-table">
+          <thead><tr><td colspan="2" style="padding:6px 14px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;font-family:var(--mono);color:var(--c4);background:rgba(123,63,160,0.06);">Parent (Container)</td></tr></thead>
+          <tr><td><span class="prop">flex-direction</span></td><td class="prop-desc"><span class="vals">row · row-reverse · column · column-reverse</span></td></tr>
+          <tr><td><span class="prop">flex-wrap</span></td><td class="prop-desc"><span class="vals">nowrap · wrap · wrap-reverse</span></td></tr>
+          <tr><td><span class="prop">flex-flow</span></td><td class="prop-desc">Shorthand: <code>direction wrap</code></td></tr>
+          <tr><td><span class="prop">justify-content</span></td><td class="prop-desc">Align on main axis<br><span class="vals">flex-start · flex-end · center · space-between · space-around · space-evenly</span></td></tr>
+          <tr><td><span class="prop">align-items</span></td><td class="prop-desc">Align on cross axis<br><span class="vals">stretch · flex-start · flex-end · center · baseline</span></td></tr>
+          <tr><td><span class="prop">align-content</span></td><td class="prop-desc">Multi-line cross axis<br><span class="vals">same values as justify-content</span></td></tr>
+          <tr><td><span class="prop">gap</span></td><td class="prop-desc">Space between items: <code>row-gap col-gap</code></td></tr>
+        </table>
+      </div>
+      <div>
+        <table class="prop-table">
+          <thead><tr><td colspan="2" style="padding:6px 14px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;font-family:var(--mono);color:var(--c4);background:rgba(123,63,160,0.06);">Children (Items)</td></tr></thead>
+          <tr><td><span class="prop">flex-grow</span></td><td class="prop-desc">How much to grow (0 = don't grow, 1 = fill)</td></tr>
+          <tr><td><span class="prop">flex-shrink</span></td><td class="prop-desc">How much to shrink (1 = default)</td></tr>
+          <tr><td><span class="prop">flex-basis</span></td><td class="prop-desc">Starting size before growing/shrinking<br><span class="vals">auto · px · % · content</span></td></tr>
+          <tr><td><span class="prop">flex</span></td><td class="prop-desc">Shorthand: <code>grow shrink basis</code><br><span class="vals">flex: 1 → flex: 1 1 0%</span></td></tr>
+          <tr><td><span class="prop">align-self</span></td><td class="prop-desc">Override parent's align-items<br><span class="vals">auto · stretch · center · flex-start/end</span></td></tr>
+          <tr><td><span class="prop">order</span></td><td class="prop-desc">Visual order (default 0, lower = first)</td></tr>
+        </table>
+        <div class="example">
+          <span class="e-comment">/* Perfect centering */</span><br>
+          <span class="e-prop">display</span><span class="e-punc">:</span> <span class="e-val">flex</span><span class="e-punc">;</span><br>
+          <span class="e-prop">justify-content</span><span class="e-punc">:</span> <span class="e-val">center</span><span class="e-punc">;</span><br>
+          <span class="e-prop">align-items</span><span class="e-punc">:</span> <span class="e-val">center</span><span class="e-punc">;</span><br>
+          <span class="e-comment">/* Grow to fill: flex: 1 */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ CSS GRID -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c5)"></div>
+      <span class="card-title" style="color:var(--c5)">CSS Grid</span>
+      <span class="card-count">14 properties — display: grid on parent</span>
+    </div>
+    <table class="prop-table">
+      <thead><tr><td colspan="2" style="padding:5px 14px;font-size:10px;font-weight:600;letter-spacing:0.08em;font-family:var(--mono);color:var(--c5);background:rgba(198,124,0,0.07);">PARENT</td></tr></thead>
+      <tr><td><span class="prop">grid-template-columns</span></td><td class="prop-desc">Define column tracks<br><span class="vals">repeat(3, 1fr) · 200px auto · minmax(100px, 1fr)</span></td></tr>
+      <tr><td><span class="prop">grid-template-rows</span></td><td class="prop-desc">Define row tracks</td></tr>
+      <tr><td><span class="prop">grid-template-areas</span></td><td class="prop-desc">Named layout areas (visual template)</td></tr>
+      <tr><td><span class="prop">gap / row-gap / column-gap</span></td><td class="prop-desc">Gutter between tracks</td></tr>
+      <tr><td><span class="prop">justify-items</span></td><td class="prop-desc">Align items on inline axis<br><span class="vals">start · end · center · stretch</span></td></tr>
+      <tr><td><span class="prop">align-items</span></td><td class="prop-desc">Align items on block axis</td></tr>
+      <tr><td><span class="prop">place-items</span></td><td class="prop-desc">Shorthand: <code>align-items justify-items</code></td></tr>
+      <tr><td><span class="prop">justify-content</span></td><td class="prop-desc">Distribute tracks in container</td></tr>
+      <thead><tr><td colspan="2" style="padding:5px 14px;font-size:10px;font-weight:600;letter-spacing:0.08em;font-family:var(--mono);color:var(--c5);background:rgba(198,124,0,0.07);">CHILDREN</td></tr></thead>
+      <tr><td><span class="prop">grid-column</span></td><td class="prop-desc"><span class="vals">1 / 3 · 1 / span 2 · 1 / -1 (full width)</span></td></tr>
+      <tr><td><span class="prop">grid-row</span></td><td class="prop-desc"><span class="vals">row start / row end</span></td></tr>
+      <tr><td><span class="prop">grid-area</span></td><td class="prop-desc">Named area or shorthand: <code>row-start / col-start / row-end / col-end</code></td></tr>
+      <tr><td><span class="prop">justify-self</span></td><td class="prop-desc">Override justify-items for one item</td></tr>
+      <tr><td><span class="prop">align-self</span></td><td class="prop-desc">Override align-items for one item</td></tr>
+    </table>
+    <div class="example">
+      <span class="e-prop">grid-template-columns</span><span class="e-punc">:</span> <span class="e-val">repeat</span><span class="e-punc">(</span><span class="e-unit">auto-fill</span><span class="e-punc">,</span> <span class="e-val">minmax</span><span class="e-punc">(</span><span class="e-unit">240px</span><span class="e-punc">,</span> <span class="e-unit">1fr</span><span class="e-punc">));</span><br>
+      <span class="e-comment">/* fr = fractional unit; auto-fill responsive grid */</span>
+    </div>
+  </div>
+
+  <!-- ⑥ POSITIONING -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c6)"></div>
+      <span class="card-title" style="color:var(--c6)">Positioning</span>
+      <span class="card-count">10 properties</span>
+    </div>
+    <table class="prop-table">
+      <tr><td><span class="prop">position</span></td><td class="prop-desc">Positioning scheme<br><span class="vals">static (default) · relative · absolute · fixed · sticky</span></td></tr>
+      <tr><td><span class="prop">top / right<br>bottom / left</span></td><td class="prop-desc">Offset from edge (with non-static position)<br><span class="vals">px · % · em · auto</span></td></tr>
+      <tr><td><span class="prop">z-index</span></td><td class="prop-desc">Stacking order — higher = in front<br><span class="vals">auto · integer (can be negative)</span></td></tr>
+      <tr><td><span class="prop">float</span></td><td class="prop-desc"><span class="vals">left · right · none — legacy layout</span></td></tr>
+      <tr><td><span class="prop">clear</span></td><td class="prop-desc"><span class="vals">left · right · both · none</span></td></tr>
+      <tr><td><span class="prop">inset</span></td><td class="prop-desc">Shorthand for top/right/bottom/left</td></tr>
+    </table>
+    <div class="example">
+      <span class="e-comment">/* Sticky header */</span><br>
+      <span class="e-prop">position</span><span class="e-punc">:</span> <span class="e-val">sticky</span><span class="e-punc">;</span> <span class="e-prop">top</span><span class="e-punc">:</span> <span class="e-unit">0</span><span class="e-punc">;</span><br>
+      <span class="e-comment">/* Center absolutely */</span><br>
+      <span class="e-prop">position</span><span class="e-punc">:</span> <span class="e-val">absolute</span><span class="e-punc">;</span><br>
+      <span class="e-prop">inset</span><span class="e-punc">:</span> <span class="e-val">50% auto auto 50%</span><span class="e-punc">;</span><br>
+      <span class="e-prop">transform</span><span class="e-punc">:</span> <span class="e-val">translate</span><span class="e-punc">(-</span><span class="e-unit">50%</span><span class="e-punc">, -</span><span class="e-unit">50%</span><span class="e-punc">);</span>
+    </div>
+    <table class="prop-table" style="border-top:1px solid var(--rule)">
+      <thead><tr><td colspan="2" style="padding:5px 14px;font-size:10px;font-weight:600;letter-spacing:0.08em;font-family:var(--mono);color:var(--c6);background:rgba(26,95,160,0.07);">position cheat guide</td></tr></thead>
+      <tr><td><span class="prop" style="color:var(--c6)">static</span></td><td class="prop-desc">Default flow. top/left/z-index ignored.</td></tr>
+      <tr><td><span class="prop" style="color:var(--c6)">relative</span></td><td class="prop-desc">Offset from its normal position. Creates stacking context.</td></tr>
+      <tr><td><span class="prop" style="color:var(--c6)">absolute</span></td><td class="prop-desc">Removed from flow. Positioned relative to nearest non-static ancestor.</td></tr>
+      <tr><td><span class="prop" style="color:var(--c6)">fixed</span></td><td class="prop-desc">Removed from flow. Positioned relative to viewport.</td></tr>
+      <tr><td><span class="prop" style="color:var(--c6)">sticky</span></td><td class="prop-desc">Stays in flow until scroll threshold, then fixed.</td></tr>
+    </table>
+  </div>
+
+  <!-- ⑦ COLORS & BACKGROUNDS -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c7)"></div>
+      <span class="card-title" style="color:var(--c7)">Colors &amp; Backgrounds</span>
+      <span class="card-count">12 properties</span>
+    </div>
+    <table class="prop-table">
+      <tr><td><span class="prop">color</span></td><td class="prop-desc">Text color — inherits down the tree</td></tr>
+      <tr><td><span class="prop">background-color</span></td><td class="prop-desc">Fill color behind content</td></tr>
+      <tr><td><span class="prop">background-image</span></td><td class="prop-desc"><code>url()</code> · <code>linear-gradient()</code> · <code>radial-gradient()</code> · <code>conic-gradient()</code></td></tr>
+      <tr><td><span class="prop">background-size</span></td><td class="prop-desc"><span class="vals">cover · contain · px · % · auto</span></td></tr>
+      <tr><td><span class="prop">background-position</span></td><td class="prop-desc"><span class="vals">center · top left · 50% 50% · px</span></td></tr>
+      <tr><td><span class="prop">background-repeat</span></td><td class="prop-desc"><span class="vals">no-repeat · repeat · repeat-x · repeat-y</span></td></tr>
+      <tr><td><span class="prop">background-attachment</span></td><td class="prop-desc"><span class="vals">scroll · fixed (parallax) · local</span></td></tr>
+      <tr><td><span class="prop">background</span></td><td class="prop-desc">Shorthand for all background- properties</td></tr>
+      <tr><td><span class="prop">filter</span></td><td class="prop-desc"><span class="vals">blur() · brightness() · contrast() · grayscale() · hue-rotate() · saturate() · drop-shadow()</span></td></tr>
+      <tr><td><span class="prop">backdrop-filter</span></td><td class="prop-desc">Filters the area behind element (frosted glass)</td></tr>
+      <tr><td><span class="prop">mix-blend-mode</span></td><td class="prop-desc"><span class="vals">multiply · screen · overlay · darken · lighten…</span></td></tr>
+      <tr><td><span class="prop">color-scheme</span></td><td class="prop-desc"><span class="vals">light · dark · light dark</span></td></tr>
+    </table>
+    <div class="example">
+      <span class="e-comment">/* Modern color formats */</span><br>
+      <span class="e-prop">color</span><span class="e-punc">:</span> <span class="e-val">oklch</span><span class="e-punc">(</span><span class="e-unit">65% 0.2 270</span><span class="e-punc">);</span><br>
+      <span class="e-prop">color</span><span class="e-punc">:</span> <span class="e-val">hsl</span><span class="e-punc">(</span><span class="e-unit">220 80% 50%</span><span class="e-punc">);</span><br>
+      <span class="e-prop">color</span><span class="e-punc">:</span> <span class="e-val">rgb</span><span class="e-punc">(</span><span class="e-unit">30 144 255 / 0.8</span><span class="e-punc">);</span><br>
+      <span class="e-prop">background</span><span class="e-punc">:</span> <span class="e-val">linear-gradient</span><span class="e-punc">(</span><span class="e-unit">135deg</span><span class="e-punc">,</span> <span class="e-val">#f00</span><span class="e-punc">,</span> <span class="e-val">#00f</span><span class="e-punc">);</span>
+    </div>
+  </div>
+
+  <!-- ⑧ TRANSITIONS & ANIMATIONS -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c8)"></div>
+      <span class="card-title" style="color:var(--c8)">Transitions &amp; Animations</span>
+      <span class="card-count">10 properties</span>
+    </div>
+    <table class="prop-table">
+      <thead><tr><td colspan="2" style="padding:5px 14px;font-size:10px;font-weight:600;letter-spacing:0.08em;font-family:var(--mono);color:var(--c8);background:rgba(42,122,106,0.07);">Transitions (state change)</td></tr></thead>
+      <tr><td><span class="prop">transition</span></td><td class="prop-desc">Shorthand: <code>property duration easing delay</code></td></tr>
+      <tr><td><span class="prop">transition-property</span></td><td class="prop-desc"><span class="vals">all · none · color · transform · opacity…</span></td></tr>
+      <tr><td><span class="prop">transition-duration</span></td><td class="prop-desc"><span class="vals">0.3s · 300ms</span></td></tr>
+      <tr><td><span class="prop">transition-timing-function</span></td><td class="prop-desc"><span class="vals">ease · ease-in · ease-out · ease-in-out · linear · cubic-bezier() · steps()</span></td></tr>
+      <tr><td><span class="prop">transition-delay</span></td><td class="prop-desc">Wait before starting</td></tr>
+      <thead><tr><td colspan="2" style="padding:5px 14px;font-size:10px;font-weight:600;letter-spacing:0.08em;font-family:var(--mono);color:var(--c8);background:rgba(42,122,106,0.07);">Animations (keyframe)</td></tr></thead>
+      <tr><td><span class="prop">@keyframes name</span></td><td class="prop-desc">Define animation steps: <code>from/to</code> or <code>0%/50%/100%</code></td></tr>
+      <tr><td><span class="prop">animation-name</span></td><td class="prop-desc">Reference to @keyframes name</td></tr>
+      <tr><td><span class="prop">animation-duration</span></td><td class="prop-desc">How long one cycle takes</td></tr>
+      <tr><td><span class="prop">animation-iteration-count</span></td><td class="prop-desc"><span class="vals">1 · infinite · number</span></td></tr>
+      <tr><td><span class="prop">animation-direction</span></td><td class="prop-desc"><span class="vals">normal · reverse · alternate · alternate-reverse</span></td></tr>
+      <tr><td><span class="prop">animation-fill-mode</span></td><td class="prop-desc"><span class="vals">none · forwards · backwards · both</span></td></tr>
+      <tr><td><span class="prop">animation-play-state</span></td><td class="prop-desc"><span class="vals">running · paused</span></td></tr>
+      <tr><td><span class="prop">animation</span></td><td class="prop-desc">Shorthand for all animation- props</td></tr>
+    </table>
+    <div class="example">
+      <span class="e-at">@keyframes</span> <span class="e-sel">fadeIn</span> <span class="e-punc">{</span><br>
+      &nbsp;&nbsp;<span class="e-sel">from</span> <span class="e-punc">{</span> <span class="e-prop">opacity</span><span class="e-punc">:</span> <span class="e-unit">0</span><span class="e-punc">;</span> <span class="e-prop">transform</span><span class="e-punc">:</span> <span class="e-val">translateY</span><span class="e-punc">(</span><span class="e-unit">16px</span><span class="e-punc">)</span> <span class="e-punc">}</span><br>
+      <span class="e-punc">}</span><br>
+      <span class="e-prop">animation</span><span class="e-punc">:</span> <span class="e-val">fadeIn</span> <span class="e-unit">0.4s</span> <span class="e-val">ease</span> <span class="e-val">both</span><span class="e-punc">;</span>
+    </div>
+  </div>
+
+  <!-- ⑨ TRANSFORMS -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c9)"></div>
+      <span class="card-title" style="color:var(--c9)">Transforms</span>
+      <span class="card-count">15 functions</span>
+    </div>
+    <table class="prop-table">
+      <tr><td><span class="prop">transform</span></td><td class="prop-desc">Apply one or more transform functions (chained left→right)</td></tr>
+      <tr><td><span class="prop">translate(x, y)</span></td><td class="prop-desc">Move — <span class="vals">translateX() · translateY() · translate3d()</span></td></tr>
+      <tr><td><span class="prop">scale(x, y)</span></td><td class="prop-desc">Resize — <span class="vals">scaleX() · scaleY() · scale3d()</span></td></tr>
+      <tr><td><span class="prop">rotate(angle)</span></td><td class="prop-desc">Rotate — <span class="vals">deg · rad · turn — rotateX/Y/Z for 3D</span></td></tr>
+      <tr><td><span class="prop">skew(x, y)</span></td><td class="prop-desc">Shear — <span class="vals">skewX() · skewY()</span></td></tr>
+      <tr><td><span class="prop">matrix(a,b,c,d,e,f)</span></td><td class="prop-desc">2D matrix transformation (advanced)</td></tr>
+      <tr><td><span class="prop">perspective(n)</span></td><td class="prop-desc">Depth for 3D transforms — use on parent</td></tr>
+      <tr><td><span class="prop">transform-origin</span></td><td class="prop-desc">Pivot point — default: <code>50% 50%</code> (center)</td></tr>
+      <tr><td><span class="prop">transform-style</span></td><td class="prop-desc"><span class="vals">flat · preserve-3d — for 3D card flips</span></td></tr>
+      <tr><td><span class="prop">backface-visibility</span></td><td class="prop-desc"><span class="vals">visible · hidden — for 3D flips</span></td></tr>
+      <tr><td><span class="prop">will-change</span></td><td class="prop-desc">Hints to browser for optimization<br><span class="vals">transform · opacity — use sparingly</span></td></tr>
+    </table>
+    <div class="example">
+      <span class="e-comment">/* GPU-accelerated movement */</span><br>
+      <span class="e-prop">transform</span><span class="e-punc">:</span> <span class="e-val">translateX</span><span class="e-punc">(</span><span class="e-unit">100px</span><span class="e-punc">)</span> <span class="e-val">scale</span><span class="e-punc">(</span><span class="e-unit">1.05</span><span class="e-punc">)</span> <span class="e-val">rotate</span><span class="e-punc">(</span><span class="e-unit">5deg</span><span class="e-punc">);</span>
+    </div>
+  </div>
+
+  <!-- ⑩ CSS VARIABLES -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c10)"></div>
+      <span class="card-title" style="color:var(--c10)">Custom Properties (Variables)</span>
+      <span class="card-count">CSS3+</span>
+    </div>
+    <table class="prop-table">
+      <tr><td><span class="prop">--name: value</span></td><td class="prop-desc">Declare a custom property (variable) on an element or :root</td></tr>
+      <tr><td><span class="prop">var(--name)</span></td><td class="prop-desc">Use a custom property<br><span class="vals">var(--name, fallback) — fallback if undefined</span></td></tr>
+      <tr><td><span class="prop">:root</span></td><td class="prop-desc">Highest-scope selector — good for global tokens</td></tr>
+      <tr><td><span class="prop">@property</span></td><td class="prop-desc">Register typed custom property (for animation)<br><span class="vals">syntax · inherits · initial-value</span></td></tr>
+      <tr><td><span class="prop">inherit</span></td><td class="prop-desc">CSS variables cascade &amp; inherit by default</td></tr>
+    </table>
+    <div class="example">
+      <span class="e-sel">:root</span> <span class="e-punc">{</span><br>
+      &nbsp;&nbsp;<span class="e-prop">--color-brand</span><span class="e-punc">:</span> <span class="e-val">oklch</span><span class="e-punc">(</span><span class="e-unit">55% 0.25 260</span><span class="e-punc">);</span><br>
+      &nbsp;&nbsp;<span class="e-prop">--spacing-md</span><span class="e-punc">:</span> <span class="e-unit">1rem</span><span class="e-punc">;</span><br>
+      <span class="e-punc">}</span><br>
+      <span class="e-sel">.btn</span> <span class="e-punc">{</span><br>
+      &nbsp;&nbsp;<span class="e-prop">background</span><span class="e-punc">:</span> <span class="e-val">var</span><span class="e-punc">(</span><span class="e-prop">--color-brand</span><span class="e-punc">,</span> <span class="e-val">blue</span><span class="e-punc">);</span><br>
+      &nbsp;&nbsp;<span class="e-prop">padding</span><span class="e-punc">:</span> <span class="e-val">var</span><span class="e-punc">(</span><span class="e-prop">--spacing-md</span><span class="e-punc">);</span><br>
+      <span class="e-punc">}</span>
+    </div>
+  </div>
+
+  <!-- ⑪ PSEUDO-CLASSES & PSEUDO-ELEMENTS -->
+  <div class="card span2">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c11)"></div>
+      <span class="card-title" style="color:var(--c11)">Pseudo-classes &amp; Pseudo-elements</span>
+      <span class="card-count">30+ selectors</span>
+    </div>
+    <div class="two-col-wrap">
+      <div>
+        <table class="prop-table">
+          <thead><tr><td colspan="2" style="padding:5px 14px;font-size:10px;font-weight:600;letter-spacing:0.08em;font-family:var(--mono);color:var(--c11);background:rgba(58,107,58,0.07);">Pseudo-classes (single colon :)</td></tr></thead>
+          <tr><td><span class="prop">:hover</span></td><td class="prop-desc">Mouse over element</td></tr>
+          <tr><td><span class="prop">:focus</span></td><td class="prop-desc">Element has keyboard/click focus</td></tr>
+          <tr><td><span class="prop">:focus-visible</span></td><td class="prop-desc">Focus only when using keyboard (better UX)</td></tr>
+          <tr><td><span class="prop">:active</span></td><td class="prop-desc">Being clicked / activated</td></tr>
+          <tr><td><span class="prop">:visited</span></td><td class="prop-desc">Link already visited</td></tr>
+          <tr><td><span class="prop">:checked</span></td><td class="prop-desc">Checked radio/checkbox/option</td></tr>
+          <tr><td><span class="prop">:disabled / :enabled</span></td><td class="prop-desc">Form element state</td></tr>
+          <tr><td><span class="prop">:placeholder-shown</span></td><td class="prop-desc">Input showing placeholder</td></tr>
+          <tr><td><span class="prop">:valid / :invalid</span></td><td class="prop-desc">Form validation state</td></tr>
+          <tr><td><span class="prop">:required / :optional</span></td><td class="prop-desc">Required attribute state</td></tr>
+          <tr><td><span class="prop">:empty</span></td><td class="prop-desc">Element has no children or text</td></tr>
+          <tr><td><span class="prop">:root</span></td><td class="prop-desc">Highest-level element (html)</td></tr>
+          <tr><td><span class="prop">:first-child</span></td><td class="prop-desc">First child of its parent</td></tr>
+          <tr><td><span class="prop">:last-child</span></td><td class="prop-desc">Last child of its parent</td></tr>
+          <tr><td><span class="prop">:nth-child(n)</span></td><td class="prop-desc"><span class="vals">n · 2n (even) · 2n+1 (odd) · 3n+2</span></td></tr>
+          <tr><td><span class="prop">:nth-of-type(n)</span></td><td class="prop-desc">nth of same element type</td></tr>
+          <tr><td><span class="prop">:only-child</span></td><td class="prop-desc">Only child of its parent</td></tr>
+          <tr><td><span class="prop">:target</span></td><td class="prop-desc">Matches URL fragment (#id)</td></tr>
+          <tr><td><span class="prop">:link</span></td><td class="prop-desc">Unvisited anchor link</td></tr>
+        </table>
+      </div>
+      <div>
+        <table class="prop-table">
+          <thead><tr><td colspan="2" style="padding:5px 14px;font-size:10px;font-weight:600;letter-spacing:0.08em;font-family:var(--mono);color:var(--c11);background:rgba(58,107,58,0.07);">Pseudo-elements (double colon ::)</td></tr></thead>
+          <tr><td><span class="prop">::before</span></td><td class="prop-desc">Generated content before element — needs <code>content:</code></td></tr>
+          <tr><td><span class="prop">::after</span></td><td class="prop-desc">Generated content after element — needs <code>content:</code></td></tr>
+          <tr><td><span class="prop">::placeholder</span></td><td class="prop-desc">Style input placeholder text</td></tr>
+          <tr><td><span class="prop">::selection</span></td><td class="prop-desc">Text highlighted by user</td></tr>
+          <tr><td><span class="prop">::first-line</span></td><td class="prop-desc">First line of a block element</td></tr>
+          <tr><td><span class="prop">::first-letter</span></td><td class="prop-desc">First character (drop-caps!)</td></tr>
+          <tr><td><span class="prop">::marker</span></td><td class="prop-desc">List item bullets and numbers</td></tr>
+          <tr><td><span class="prop">::backdrop</span></td><td class="prop-desc">Behind fullscreen or dialog element</td></tr>
+          <tr><td><span class="prop">::file-selector-button</span></td><td class="prop-desc">The "Browse" button on file inputs</td></tr>
+          <tr><td><span class="prop">::scrollbar</span></td><td class="prop-desc">WebKit: customize scrollbar appearance</td></tr>
+        </table>
+        <div class="example">
+          <span class="e-sel">::before</span> <span class="e-punc">{</span> <span class="e-prop">content</span><span class="e-punc">:</span> <span class="e-val">""</span><span class="e-punc">;</span> <span class="e-comment">/* required */</span><br>
+          &nbsp;&nbsp;<span class="e-prop">display</span><span class="e-punc">:</span> <span class="e-val">block</span><span class="e-punc">;</span> <span class="e-punc">}</span><br>
+          <span class="e-sel">li::marker</span> <span class="e-punc">{</span> <span class="e-prop">color</span><span class="e-punc">:</span> <span class="e-val">tomato</span><span class="e-punc">;</span> <span class="e-punc">}</span><br>
+          <span class="e-sel">::selection</span> <span class="e-punc">{</span> <span class="e-prop">background</span><span class="e-punc">:</span> <span class="e-val">#f7c948</span><span class="e-punc">;</span> <span class="e-punc">}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑫ MEDIA QUERIES & RESPONSIVE -->
+  <div class="card full">
+    <div class="card-head">
+      <div class="card-icon" style="background:var(--c12)"></div>
+      <span class="card-title" style="color:var(--c12)">Media Queries &amp; Responsive Design</span>
+      <span class="card-count">@media, @container, @layer, @supports</span>
+    </div>
+    <div class="two-col-wrap">
+      <div>
+        <table class="prop-table">
+          <tr><td><span class="prop">@media (max-width: 768px)</span></td><td class="prop-desc">Styles apply when viewport ≤ 768px (mobile-first: use min-width)</td></tr>
+          <tr><td><span class="prop">@media (min-width: 768px)</span></td><td class="prop-desc">Mobile-first breakpoint — preferred approach</td></tr>
+          <tr><td><span class="prop">@media screen</span></td><td class="prop-desc">Targets screen displays (vs print, speech)</td></tr>
+          <tr><td><span class="prop">@media print</span></td><td class="prop-desc">Print-specific styles</td></tr>
+          <tr><td><span class="prop">@media (orientation: landscape)</span></td><td class="prop-desc">Landscape vs portrait device</td></tr>
+          <tr><td><span class="prop">@media (hover: hover)</span></td><td class="prop-desc">Device supports hover (non-touch)</td></tr>
+          <tr><td><span class="prop">@media (prefers-color-scheme: dark)</span></td><td class="prop-desc">User prefers dark mode</td></tr>
+          <tr><td><span class="prop">@media (prefers-reduced-motion: reduce)</span></td><td class="prop-desc">User has reduced motion enabled</td></tr>
+          <tr><td><span class="prop">@media (display-mode: standalone)</span></td><td class="prop-desc">PWA installed and running standalone</td></tr>
+          <tr><td><span class="prop">and · or (,) · not</span></td><td class="prop-desc">Combine conditions: <code>@media (min-width:768px) and (hover:hover)</code></td></tr>
+        </table>
+      </div>
+      <div>
+        <table class="prop-table">
+          <tr><td><span class="prop">@container</span></td><td class="prop-desc">Container queries — styles based on parent size<br><span class="vals">container-type: inline-size | size on parent</span></td></tr>
+          <tr><td><span class="prop">@layer</span></td><td class="prop-desc">Cascade layers — explicit specificity ordering<br><span class="vals">@layer base, components, utilities;</span></td></tr>
+          <tr><td><span class="prop">@supports</span></td><td class="prop-desc">Feature detection: <code>@supports (display: grid)</code></td></tr>
+          <tr><td><span class="prop">viewport units</span></td><td class="prop-desc"><span class="vals">vw · vh · vmin · vmax · svh · dvh · lvh</span></td></tr>
+          <tr><td><span class="prop">Common breakpoints</span></td><td class="prop-desc"><span class="vals">480px (mobile) · 768px (tablet) · 1024px (desktop) · 1280px (large)</span></td></tr>
+        </table>
+        <div class="example">
+          <span class="e-at">@media</span> <span class="e-punc">(</span><span class="e-prop">prefers-color-scheme</span><span class="e-punc">:</span> <span class="e-val">dark</span><span class="e-punc">) {</span><br>
+          &nbsp;&nbsp;<span class="e-sel">:root</span> <span class="e-punc">{</span> <span class="e-prop">--bg</span><span class="e-punc">:</span> <span class="e-val">#111</span><span class="e-punc">;</span> <span class="e-punc">} }</span><br>
+          <span class="e-at">@container</span> <span class="e-sel">sidebar</span> <span class="e-punc">(</span><span class="e-prop">min-width</span><span class="e-punc">:</span> <span class="e-unit">400px</span><span class="e-punc">) {</span><br>
+          &nbsp;&nbsp;<span class="e-sel">.card</span> <span class="e-punc">{</span> <span class="e-prop">display</span><span class="e-punc">:</span> <span class="e-val">flex</span><span class="e-punc">;</span> <span class="e-punc">} }</span><br>
+          <span class="e-at">@supports</span> <span class="e-punc">(</span><span class="e-prop">display</span><span class="e-punc">:</span> <span class="e-val">grid</span><span class="e-punc">) { … }</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /grid -->
+</div><!-- /main -->
+
+<footer>
+  <span>CSS Cheatsheet · Selectors, Properties, Layout Systems, Media Queries &amp; more</span>
+  <span style="color:var(--accent)">CSS Living Standard · W3C / WHATWG</span>
+</footer>
+
+</body>
+</html>

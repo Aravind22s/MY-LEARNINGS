@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        section {
+            background-color: #d9f787a9;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="card">
+                <h2 style="color: rgb(243, 148, 6);">Python</h2>
+                <p>Click the button below.</p>
+
+                <button onclick="showMessage()">
+                    Click Me
+                </button>
+            </div>
+            <div class="card">
+                <h2 style="color: rgb(243, 148, 6);">JavaScript</h2>
+                <p>Click the button below.</p>
+    
+                <button onclick="showMessage()">
+                    Click Me
+                </button>
+            </div>
+        </div>
+    </section>
+    <script>
+        function showMessage() {
+            alert("Hello! You clicked the button.");
+        }
+    </script>
+</body>
+</html>

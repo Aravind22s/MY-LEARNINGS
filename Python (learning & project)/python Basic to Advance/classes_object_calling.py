@@ -17,3 +17,8 @@ class Student:
     def access_private_info(self):
         print("Accessing private info safely:")
         self.__display_private_info()
+
+class PrivateClass(Student):
+    def callpirvate_method(self):
+        print(f"Calling private method from subclass:{self._Student__password}")
+         # This will raise an error due to name mangling

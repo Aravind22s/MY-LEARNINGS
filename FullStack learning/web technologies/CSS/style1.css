@@ -1,0 +1,229 @@
+body{
+    font-family:Arial;
+    margin:30px;
+}
+
+/* ==========================
+   PSEUDO CLASSES
+========================== */
+
+/* Hover */
+
+.hover-btn:hover{
+    background:red;
+    color:white;
+}
+
+/* Focus */
+
+input:focus{
+    background:lightyellow;
+}
+
+/* Focus Visible */
+
+input:focus-visible{
+    border:3px solid blue;
+}
+
+/* Active */
+
+.active-btn:active{
+    transform:scale(.9);
+}
+
+/* Link */
+
+a:link{
+    color:blue;
+}
+
+/* Visited */
+
+a:visited{
+    color:purple;
+}
+
+/* Checked */
+
+input:checked{
+    width:25px;
+    height:25px;
+}
+
+/* Disabled */
+
+input:disabled{
+    background:lightgray;
+}
+
+/* Enabled */
+
+input:enabled{
+    border:2px solid green;
+}
+
+/* Placeholder shown */
+
+input:placeholder-shown{
+    background:#ffffdd;
+}
+
+/* Valid */
+
+input:valid{
+    border:3px solid green;
+}
+
+/* Invalid */
+
+input:invalid{
+    border:3px solid red;
+}
+
+/* Required */
+
+input:required{
+    background:#ffe6e6;
+}
+
+/* Optional */
+
+input:optional{
+    background:#e6ffe6;
+}
+
+/* Empty */
+
+.empty-box:empty{
+    width:100px;
+    height:100px;
+    background:red;
+}
+
+/* Root */
+
+:root{
+    --main-color:royalblue;
+}
+
+/* First Child */
+
+.list li:first-child{
+    color:red;
+}
+
+/* Last Child */
+
+.list li:last-child{
+    color:green;
+}
+
+/* nth-child */
+
+.list li:nth-child(2){
+    background:yellow;
+}
+
+/* Even */
+
+.list li:nth-child(even){
+    background:lightblue;
+}
+
+/* Odd */
+
+.list li:nth-child(odd){
+    background:#ddd;
+}
+
+/* nth of type */
+
+.list li:nth-of-type(3){
+    font-size:25px;
+}
+
+/* Only Child */
+
+.parent p:only-child{
+    color:orange;
+}
+
+/* Target */
+
+#section:target{
+    background:yellow;
+}
+
+/* ==========================
+   PSEUDO ELEMENTS
+========================== */
+
+/* Before */
+
+.before-after::before{
+    content:"🔥 ";
+}
+
+/* After */
+
+.before-after::after{
+    content:" 🚀";
+}
+
+/* Placeholder */
+
+input::placeholder{
+    color:red;
+}
+
+/* Selection */
+
+::selection{
+    background:black;
+    color:white;
+}
+
+/* First Line */
+
+.first::first-line{
+    color:blue;
+    font-weight:bold;
+}
+
+/* First Letter */
+
+.first::first-letter{
+    font-size:50px;
+    color:red;
+}
+
+/* Marker */
+
+li::marker{
+    color:red;
+    font-size:20px;
+}
+
+/* File Selector Button */
+
+::file-selector-button{
+    background:royalblue;
+    color:white;
+    border:none;
+    padding:10px;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:12px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:gray;
+}
+
+::-webkit-scrollbar-track{
+    background:#ddd;
+}

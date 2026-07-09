@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Transition & Animation Demo</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    text-align:center;
+}
+
+h1{
+    color:#333;
+}
+
+.container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
+    margin-top:40px;
+}
+
+/* ===================================
+        TRANSITION EXAMPLES
+=================================== */
+
+.box{
+    width:120px;
+    height:120px;
+    background:royalblue;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+}
+
+/* 1. transition-property */
+
+.box1{
+    transition-property:background;
+    transition-duration:1s;
+}
+
+.box1:hover{
+    background:red;
+}
+
+/* 2. transition-duration */
+
+.box2{
+    transition:background 3s;
+}
+
+.box2:hover{
+    background:green;
+}
+
+/* 3. transition-timing-function */
+
+.box3{
+    transition:transform 2s ease-in-out;
+}
+
+.box3:hover{
+    transform:translateX(120px);
+}
+
+/* 4. transition-delay */
+
+.box4{
+    transition:background 1s;
+    transition-delay:2s;
+}
+
+.box4:hover{
+    background:orange;
+}
+
+/* 5. transition shorthand */
+
+.box5{
+    transition:all 1s ease;
+}
+
+.box5:hover{
+    background:purple;
+    transform:rotate(45deg) scale(1.2);
+}
+
+/* ===================================
+          ANIMATION EXAMPLES
+=================================== */
+
+.circle{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:tomato;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Keyframes */
+
+@keyframes move{
+
+    0%{
+        transform:translateX(0);
+        background:red;
+    }
+
+    50%{
+        transform:translateX(150px);
+        background:green;
+    }
+
+    100%{
+        transform:translateX(0);
+        background:blue;
+    }
+
+}
+
+/* animation-name */
+
+.anim1{
+
+    animation-name:move;
+    animation-duration:3s;
+
+}
+
+/* animation-iteration-count */
+
+.anim2{
+
+    animation-name:move;
+    animation-duration:3s;
+    animation-iteration-count:infinite;
+
+}
+
+/* animation-direction */
+
+.anim3{
+
+    animation-name:move;
+    animation-duration:3s;
+    animation-direction:alternate;
+    animation-iteration-count:infinite;
+
+}
+
+/* animation-fill-mode */
+
+.anim4{
+
+    animation-name:move;
+    animation-duration:3s;
+    animation-fill-mode:forwards;
+
+}
+
+/* animation-play-state */
+
+.anim5{
+
+    animation-name:move;
+    animation-duration:4s;
+    animation-iteration-count:infinite;
+
+}
+
+.anim5:hover{
+
+    animation-play-state:paused;
+
+}
+
+/* Animation Shorthand */
+
+.anim6{
+
+    animation:move 4s ease-in-out 1s infinite alternate forwards;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>CSS Transition Examples</h1>
+
+<div class="container">
+
+<div class="box box1">
+Property
+</div>
+
+<div class="box box2">
+Duration
+</div>
+
+<div class="box box3">
+Timing
+</div>
+
+<div class="box box4">
+Delay
+</div>
+
+<div class="box box5">
+Shorthand
+</div>
+
+</div>
+
+<hr>
+
+<h1>CSS Animation Examples</h1>
+
+<div class="container">
+
+<div class="circle anim1">
+Name
+</div>
+
+<div class="circle anim2">
+Infinite
+</div>
+
+<div class="circle anim3">
+Alternate
+</div>
+
+<div class="circle anim4">
+Forward
+</div>
+
+<div class="circle anim5">
+Pause
+</div>
+
+<div class="circle anim6">
+All
+</div>
+
+</div>
+
+</body>
+</html>

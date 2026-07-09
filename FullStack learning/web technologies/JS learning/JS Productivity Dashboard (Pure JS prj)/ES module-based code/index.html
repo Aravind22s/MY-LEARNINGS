@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Productivity Dashboard</title>
+</head>
+<body>
+
+  <h1 id="title"></h1>
+
+  <form id="user-form">
+    <input id="name" placeholder="Enter your name" />
+    <button type="submit">Save</button>
+  </form>
+
+  <p id="output"></p>
+
+  <hr />
+
+    <h2>Tasks</h2>
+
+    <form id="task-form">
+    <input id="task-input" placeholder="New task" />
+    <select id="priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+    </select>
+    <button type="submit">Add Task</button>
+    </form>
+
+    <ul id="task-list"></ul>
+
+    <hr />
+
+    <h2>Learning Tracker</h2>
+
+    <form id="session-form">
+    <input id="topic" placeholder="Topic (e.g. JavaScript)" />
+    <input id="duration" type="number" placeholder="Minutes studied" />
+    <button type="submit">Add Session</button>
+    </form>
+
+    <p id="stats"></p>
+
+    <ul id="session-list"></ul>
+
+    <hr />
+
+    <h2>Daily Motivation</h2>
+
+    <button id="load-quote">Load Quote</button>
+
+    <p id="quote"></p>
+    <p id="quote-status"></p>
+
+    <hr />
+    <!-- RESET THE LOCAL DATA -->
+    <button id="reset">Reset App</button>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
