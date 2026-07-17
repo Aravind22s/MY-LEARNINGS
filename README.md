@@ -93,32 +93,6 @@ Python (learning & project) for automation
 
 ---
 
-## 🚀 Quick Start
-
-### Prerequisites
-- Python 3.10+
-- Git
-- VS Code / Jupyter Lab
-- (Optional) Docker for deployment practice
-
-### Environment Setup
-```bash
-# Clone
-git clone <this-repo>
-cd MY-LEARNINGS
-
-# Python environment (recommended per-project)
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Core DS/ML packages
-pip install jupyter pandas numpy scikit-learn matplotlib seaborn xgboost flask
-
-# For Gen AI
-pip install openai anthropic langchain
-```
-
----
 
 ## 📝 How to Use This Repo
 
@@ -143,22 +117,6 @@ Read README → Open notebook → Run cells → Experiment → Build project →
 
 ---
 
-## 📌 Git Practices
-
-```bash
-# Commit convention
-feat: add new learning module
-fix: correct notebook error
-docs: update README
-refactor: clean up code
-
-# Example
-git add .
-git commit -m "feat: add sentiment analysis practice project"
-git push
-```
-
----
 
 ## 🤝 Contributing to Your Own Learning
 
@@ -170,17 +128,6 @@ This is a **personal learning repo**, but you can:
 
 ---
 
-## 📅 Learning Log (Recent)
-
-| Date | Activity | Folder |
-|------|----------|--------|
-| 2025-07-14 | Updated ML Lifecycle notebook | DA-DS-ML-DL |
-| 2025-07-13 | Added Django learning guide | FullStack learning |
-| 2025-07-13 | Completed prompt engineering notebooks | Gen AI |
-| 2025-07-09 | Built JS Productivity Dashboard (ES modules) | FullStack/JS learning |
-| 2025-07-08 | Finished ML model practice notebooks | DA-DS-ML-DL/Practice |
-
----
 
 > **"The best way to learn is to build. The best way to remember is to teach."** — This repo does both.
 
