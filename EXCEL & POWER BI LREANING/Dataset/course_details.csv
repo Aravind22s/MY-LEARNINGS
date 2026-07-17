@@ -1,0 +1,31 @@
+CourseInstanceID,CourseID,CourseName,Category,DurationWeeks,Level,Instructor,StartDate,Fee,Mode
+C001-1,C001,Python for Data Science,Data Science,12,Intermediate,Dr. Kumar,2025-01-01,25000,Online
+C002-1,C002,SQL & Databases,Database,8,Beginner,Ms. Priya,2025-01-08,18000,Online
+C003-1,C003,Power BI,Analytics,10,Intermediate,Mr. Arun,2025-01-15,20000,Hybrid
+C004-1,C004,Machine Learning,AI,16,Advanced,Dr. Meena,2025-01-22,40000,Hybrid
+C005-1,C005,Deep Learning,AI,18,Advanced,Ms. Kavya,2025-01-29,45000,Online
+C006-1,C006,Business Analytics,Analytics,10,Intermediate,Mr. Rahul,2025-02-05,22000,Online
+C001-2,C001,Python for Data Science,Data Science,12,Intermediate,Dr. Kumar,2025-02-12,25000,Online
+C002-2,C002,SQL & Databases,Database,8,Beginner,Ms. Priya,2025-02-19,18000,Online
+C003-2,C003,Power BI,Analytics,10,Intermediate,Mr. Arun,2025-02-26,20000,Offline
+C004-2,C004,Machine Learning,AI,16,Advanced,Dr. Meena,2025-03-05,40000,Online
+C005-2,C005,Deep Learning,AI,18,Advanced,Ms. Kavya,2025-03-12,45000,Hybrid
+C006-2,C006,Business Analytics,Analytics,10,Intermediate,Mr. Rahul,2025-03-19,22000,Online
+C001-3,C001,Python for Data Science,Data Science,12,Intermediate,Dr. Kumar,2025-03-26,25000,Offline
+C002-3,C002,SQL & Databases,Database,8,Beginner,Ms. Priya,2025-04-02,18000,Hybrid
+C003-3,C003,Power BI,Analytics,10,Intermediate,Mr. Arun,2025-04-09,20000,Offline
+C004-3,C004,Machine Learning,AI,16,Advanced,Dr. Meena,2025-04-16,40000,Online
+C005-3,C005,Deep Learning,AI,18,Advanced,Ms. Kavya,2025-04-23,45000,Hybrid
+C006-3,C006,Business Analytics,Analytics,10,Intermediate,Mr. Rahul,2025-04-30,22000,Online
+C001-4,C001,Python for Data Science,Data Science,12,Intermediate,Dr. Kumar,2025-05-07,25000,Hybrid
+C002-4,C002,SQL & Databases,Database,8,Beginner,Ms. Priya,2025-05-14,18000,Hybrid
+C003-4,C003,Power BI,Analytics,10,Intermediate,Mr. Arun,2025-05-21,20000,Hybrid
+C004-4,C004,Machine Learning,AI,16,Advanced,Dr. Meena,2025-05-28,40000,Offline
+C005-4,C005,Deep Learning,AI,18,Advanced,Ms. Kavya,2025-06-04,45000,Online
+C006-4,C006,Business Analytics,Analytics,10,Intermediate,Mr. Rahul,2025-06-11,22000,Offline
+C001-5,C001,Python for Data Science,Data Science,12,Intermediate,Dr. Kumar,2025-06-18,25000,Offline
+C002-5,C002,SQL & Databases,Database,8,Beginner,Ms. Priya,2025-06-25,18000,Online
+C003-5,C003,Power BI,Analytics,10,Intermediate,Mr. Arun,2025-07-02,20000,Online
+C004-5,C004,Machine Learning,AI,16,Advanced,Dr. Meena,2025-07-09,40000,Online
+C005-5,C005,Deep Learning,AI,18,Advanced,Ms. Kavya,2025-07-16,45000,Hybrid
+C006-5,C006,Business Analytics,Analytics,10,Intermediate,Mr. Rahul,2025-07-23,22000,Offline
